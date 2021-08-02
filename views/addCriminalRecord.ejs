@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head.ejs') %>
+        <link rel="stylesheet" href="css/dashboard.css">
+        <title>Criminal Record</title>
+
+</head>
+
+<body>
+
+    <div class="page-wrapper chiller-theme toggled">
+
+        <%- include ('partials/header.ejs') %>
+            <main class="page-content mt-5">
+                <div class="container-fluid">
+                    <h2>Add Criminal Record</h2>
+                    <hr>
+                    <div class="container py-3">
+                        <!-- error div -->
+                        <div id="alertDiv" style="display: none;">
+                            <div class="alert alert-info" role="alert">
+                                <span id="alertMsg"></span>
+                            </div>
+                        </div>
+                        <!-- error div end -->
+                        <div id="criminalInfo" class="p-4 border rounded border-dark">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <form id="criminalInfoForm" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <!-- <form id="cnicForm"> -->
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control" id="CNIC"
+                                                        placeholder="Enter CNIC" required pattern="[0-9]{13}">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-dark" type="button" id="fBtn"
+                                                            name="fBtn">Fetch</button>
+                                                    </div>
+                                                </div>
+                                                <!-- </form> -->
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="FullName" class="col-sm-2 col-form-label"><b>Full
+                                                    Name</b></label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                    id="FullName" placeholder="Person's Name" readonly required>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="Height" class="col-sm-2 col-form-label"><b>Height</b></label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="Height"
+                                                    placeholder="Height in cm [ex:140.0]" required
+                                                    pattern="[0-9]+.[0-9]+">
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="Weight" class="col-sm-2 col-form-label"><b>Weight</b></label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="Weight"
+                                                    placeholder="Weight in kg [ex: 70.0]" required
+                                                    pattern="[0-9]+.[0-9]+">
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="Complexion"
+                                                class="col-sm-2 col-form-label"><b>Complexion</b></label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="Complexion"
+                                                    placeholder="Complexion" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-4 row">
+                                            <label for="HairColor" class="col-sm-2 col-form-label"><b>Hair
+                                                    Color</b></label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="HairColor"
+                                                    placeholder="Hair Color" required>
+                                            </div>
+                                            <label for="EyeColor" class="col-sm-2 col-form-label"><b>Eye
+                                                    Color</b></label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="EyeColor"
+                                                    placeholder="Eye Color" required>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="Lang" class="col-sm-2 col-form-label"><b>Languages</b></label>
+                                            <div class="col-sm-10">
+                                                <textarea type="text" class="form-control" id="Lang"
+                                                    placeholder="Languages" required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="MOI" class="col-sm-2 col-form-label"><b>Marks of
+                                                    Identification</b></label>
+                                            <div class="col-sm-10">
+                                                <textarea type="text" class="form-control" id="MOI"
+                                                    placeholder="Marks of Identification" required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <div class="col-sm-12">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input"
+                                                        name="frontProfileImage" id="frontProfileImage" required>
+                                                    <label id="frontProfileImagePath" class="custom-file-label"
+                                                        for="frontProfileImage">Choose Front Profile</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <div class="col-sm-12">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" name="leftProfileImage"
+                                                        id="leftProfileImage">
+                                                    <label id="leftProfileImagePath" class="custom-file-label"
+                                                        for="leftProfileImage">Choose Left Profile</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <div class="col-sm-12">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input"
+                                                        name="rightProfileImage" id="rightProfileImage">
+                                                    <label id="rightProfileImagePath" class="custom-file-label"
+                                                        for="rightProfileImage">Choose Right Profile</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="row">
+
+                                        <div class="card m-2" style="width: 11rem;">
+                                            <div class="card-body">
+                                                <label for="front-img-holder"><b>Front Profile Image</b></label>
+                                                <img id="front-img-holder" class="card-img-top"
+                                                    src="images/unknownSampleImg.png" alt="person's image">
+                                            </div>
+                                        </div>
+
+                                        <div class="card m-2" style="width: 11rem;">
+                                            <div class="card-body">
+                                                <label for="left-img-holder"><b>Left Profile Image</b></label>
+                                                <img id="left-img-holder" class="card-img-top"
+                                                    src="images/unknownSampleImg.png" alt="person's image">
+                                            </div>
+                                        </div>
+
+                                        <div class="card m-2" style="width: 11rem;">
+                                            <div class="card-body">
+                                                <label for="right-img-holder"><b>Right Profile Image</b></label>
+                                                <img id="right-img-holder" class="card-img-top"
+                                                    src="images/unknownSampleImg.png" alt="person's image">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="mt-4 row">
+                                <div class="col-sm-12">
+                                    <input type="submit" form="criminalInfoForm" class="btn btn-dark col-sm-12"
+                                        value="Add Criminal Record">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- </div> -->
+    </div>
+    </main>
+    <!-- page-content" -->
+    </div>
+    <!-- page-wrapper -->
+    <%- include('partials/foot.ejs') %>
+        <script>
+            $('#rightProfileImage').on('change', function (e) {
+                document.getElementById('rightProfileImagePath').innerText = e.target.files[0].name;
+                $('#right-img-holder').attr('src', URL.createObjectURL(e.target.files[0]))
+            });
+            $('#leftProfileImage').on('change', function (e) {
+                document.getElementById('leftProfileImagePath').innerText = e.target.files[0].name;
+                $('#left-img-holder').attr('src', URL.createObjectURL(e.target.files[0]))
+            });
+            $('#frontProfileImage').on('change', function (e) {
+                document.getElementById('frontProfileImagePath').innerText = e.target.files[0].name;
+                $('#front-img-holder').attr('src', URL.createObjectURL(e.target.files[0]))
+            });
+            $('#fBtn').on('click', function () {
+                let cnic = $('#CNIC').val();
+                if (cnic.length != 0) {
+                    $.ajax({
+                        type: 'get',
+                        url: '/search_person_name',
+                        xhrFields: {
+        withCredentials: true
+    },
+                        dataType: 'json',
+                        data: {
+                            "cnic": cnic
+                        },
+                        success: function (record) {
+                            $('#FullName').val(record.FullName);
+                        },
+                        error: function (err) {
+                            $('#alertMsg').text("Error! " + err.responseText);
+                            $('#alertDiv').show().delay(2000).fadeOut();
+                        }
+                    });
+                }
+                else {
+                    $('#alertMsg').text("Please Fill CNIC First!");
+                    $('#alertDiv').show().delay(2000).fadeOut();
+                }
+            });
+            $('#criminalInfoForm').on('submit', function (e) {
+                e.preventDefault();
+                if ($('#FullName').val().length != 0) {
+                    var formData = new FormData(this);
+                    var allFields = document.querySelectorAll('input[type="text"], textarea');
+                    allFields.forEach(field => {
+                        formData.append(field.id, field.value);
+                    })
+                    $.ajax({
+                        type: 'post',
+                        url: '/process_add_criminal_rec',
+                        dataType: 'text',
+                        xhrFields: {
+        withCredentials: true
+    },
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        success: function (result) {
+                            $('#alertMsg').text(result);
+                            $('#alertDiv').show().delay(3000).fadeOut();
+                            $('html, body').animate({ scrollTop: $("h2").offset().top }, 100);
+
+                        },
+                        error: function (err) {
+                            $('#alertMsg').text("Error! " + err.responseText);
+                            $('#alertDiv').show().delay(3000).fadeOut();
+                            $('html, body').animate({ scrollTop: $("h2").offset().top }, 100);
+                        }
+                    });
+                }
+                else {
+                    $('#alertMsg').text("Please Fetch Name First!");
+                    $('#alertDiv').show().delay(2000).fadeOut();
+                }
+            });
+        </script>
+
+
+
+</body>
+
+</html>

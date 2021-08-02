@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('partials/head.ejs') %>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <title>Detect Face</title>
+
+</head>
+
+<body>
+
+  <div class="page-wrapper chiller-theme toggled">
+
+    <%- include ('partials/header.ejs') %>
+      <main class="page-content mt-5">
+        <div class="container-fluid">
+          <h2>Detect Face</h2>
+          <hr>
+          <div class="container py-3">
+            <div class="p-3 mb-3 bg-dark text-white rounded h6">Upload Image</div>
+
+            <div class="card" style="width: 12rem;" hidden id="img-card">
+              <img id="img-holder" class="card-img-top" src="images/unknownSampleImg.png" alt="Card image cap">
+              <div class="card-body p-2">
+                <p class="card-text" id="img-file-name">file-name</p>
+              </div>
+            </div>
+            <br>
+            <form method="POST" action="/process_face_detection" enctype="multipart/form-data" id="face-recog-form">
+              <div class="input-group mb-3">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" name="unknownImage" id="unknownImage">
+                  <label id="unknownImagePath" class="custom-file-label" for="unknownImage">Choose file</label>
+                </div>
+                <div class="input-group-append">
+                  <button class="btn btn-dark" type="submit" id="sBtn" name="sBtn">Upload</button>
+                </div>
+              </div>
+              <!-- <input type="file" name="unknownImage" />
+              <input type="submit" name="sBtn" /> -->
+            </form>
+            <div id="resultsDiv">
+
+            </div>
+          </div>
+
+          <!-- </div> -->
+        </div>
+      </main>
+      <!-- page-content" -->
+  </div>
+  <!-- page-wrapper -->
+  <%- include('partials/foot.ejs') %>
+    <script>
+      $('#unknownImage').on('change', function (e) {
+        // document.getElementById('unknownImagePath').innerText = e.target.files[0].name;
+        document.getElementById('img-file-name').innerText = e.target.files[0].name;
+        $('#img-card').removeAttr('hidden');
+        $('#img-holder').attr('src', URL.createObjectURL(e.target.files[0]))
+      });
+      $('#face-recog-form').on('submit', function (e) {
+        let alertMsg = `<div class="alert alert-info" role="alert">
+          Fetching Results 
+          <i class="fas fa-sync fa-spin"></i>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>`
+        document.getElementById('resultsDiv').innerHTML = alertMsg;
+        $('html, body').animate({ scrollTop: $("#resultsDiv").offset().top }, 1000);
+        e.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+          type: 'post',
+          url: '/process_face_detection',
+          contentType: false,
+          processData: false,
+          xhrFields: {
+        withCredentials: true
+    },
+          data: formData,
+          success: function (data) {
+            document.getElementById('resultsDiv').innerHTML = data;
+            $('html, body').animate({ scrollTop: $("#resultsDiv").offset().top }, 1000);
+          }
+        });
+      });
+
+      $('#resultsDiv').on('click','.cnicBtn', function (e) {
+        e.preventDefault();
+        $.ajax({
+          type: 'get',
+          url: '/search_person',
+          dataType: 'json',
+          xhrFields: {
+        withCredentials: true
+    },
+          data: {
+            "cnic": e.target.innerText
+          },
+          success: function (record) {
+            $('#CNIC').val(record.CNIC);
+            $('#FullName').val(record.FullName);
+            $('#FatherName').val(record.FatherName);
+            $('#FatherCNIC').val(record.FatherCNIC);
+            $('#MotherName').val(record.MotherName);
+            $('#MotherCNIC').val(record.MotherCNIC);
+            $('#DOB').val(record.DOB);
+            $('#Age').val(record.Age);
+            $('#Address').val(record.Address);
+            $('#MobileNum').val(record.MobileNum);
+            $('#Email').val(record.Email);
+            $('#Region').val(record.Region);
+            $('#Religion').val(record.Religion);
+            $('#Cast').val(record.Cast);
+            $('#Gender').val(record.Gender);
+            $('#MOI').val(record.IdentificationMark);
+            $('#modal-img-holder').attr('src', `images/${record.CNIC}.jpg`)
+            $('#personDetailModal').modal('show');
+          }
+        });
+
+      });
+
+    </script>
+
+
+
+</body>
+
+</html>

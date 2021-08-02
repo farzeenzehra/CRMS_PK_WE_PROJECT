@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head.ejs') %>
+        <link rel="stylesheet" href="css/dashboard.css">
+        <title>Search Crime Record</title>
+
+</head>
+
+<body>
+
+    <div class="page-wrapper chiller-theme toggled">
+
+        <%- include ('partials/header.ejs') %>
+            <main class="page-content mt-5">
+                <div class="container-fluid">
+                    <h2>Search Crime Records</h2>
+                    <hr>
+                    <div class="container py-3">
+                        <div class="input-group mb-3 d-flex flex-wrap">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text bg-dark text-white" for="selectionGrp">Search By</label>
+                            </div>
+                            <select class="custom-select" id="selectionGrp" required>
+                                <option value="" disabled selected hidden>Please Choose...</option>
+                                <option value="cId">Criminal ID</option>
+                                <option value="cName">Criminal Name</option>
+                                <option value="cnic">CNIC</option>
+                                <option value="lang">Language</option>
+                                <option value="moi">Marks of Identification</option>
+                                <option value="crId">Crime ID</option>
+                                <option value="crName">Crime Name</option>
+                                <option value="jailNo">Jail No.</option>
+                                <option value="firNo">FIR No.</option>
+                                <option value="caseNo">Case No.</option>
+                            </select>
+                        </div>
+                        <input type="text" class="form-control" id="searchField" placeholder="Select Option Above"
+                            disabled required>
+                        <div id="resultsDiv" class="my-3" style="overflow: scroll;">
+
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- page-content" -->
+    </div>
+    <!-- page-wrapper -->
+    <%- include('partials/foot.ejs') %>
+
+        <script>
+            function fetchResults() {
+                let alertMsg = `<div class="alert alert-info" role="alert">Fetching Results . . .</div>`
+                document.getElementById('resultsDiv').innerHTML = alertMsg;
+                $.ajax({
+                    type: 'get',
+                    url: '/get_results_search_crime_rec',
+                    data:
+                    {
+                        "selectedGrp": $('#selectionGrp').val(),
+                        "searchQuery": $('#searchField').val()
+                    },
+                    xhrFields: {
+        withCredentials: true
+    },
+                    success: function (records) {
+                        document.getElementById('resultsDiv').innerHTML =
+                            `
+                    <div class="p-3 mb-3 bg-dark text-white rounded h6">Results [${$('#selectionGrp option:selected').text()} : ${$('#searchField').val()}]</div>
+                    <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Record ID</th>
+                            <th scope="col">Criminal Name</th>
+                            <th scope="col">Crime</th>
+                            <th scope="col">Punishment</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">FIR No.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    </table>
+                    `
+                        if (records.length != 0) {
+                            records.forEach(record => {
+                                let tr = document.createElement('tr');
+                                tr.innerHTML =
+                                    `
+                                    <th scope="row">${record.RecordID}</th>
+                                    <td>${record.CriminalName}</td>
+                                    <td>${record.CrimeType}</td>
+                                    <td>${record.Punishment}</td>
+                                    <td>${record.Status}</td>
+                                    <td>${record.FIRNo}</td>
+                                    `
+                                document.querySelector(".table tbody").append(tr)
+                            });
+                        }
+                        else {
+                            document.getElementById('resultsDiv').innerHTML =
+                                `<div class="p-3 mb-3 bg-dark text-white rounded h6">No Result Found [${$('#selectionGrp option:selected').text()} : ${$('#searchField').val()}]</div>`
+                        }
+                        $('html, body').animate({ scrollTop: $("#resultsDiv").offset().top }, 1000);
+                    }
+                });
+            }
+            $('#selectionGrp').on('change', function (e) {
+                $('#searchField').removeAttr('disabled');
+                $('#searchField').attr('placeholder', "Enter " + $('#selectionGrp option:selected').text());
+                fetchResults();
+            });
+            $('#searchField').on('input', function (e) {
+                fetchResults();
+            });
+        </script>
+
+
+
+</body>
+
+</html>

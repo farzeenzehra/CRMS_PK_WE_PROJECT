@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head.ejs') %>
+        <link rel="stylesheet" href="css/dashboard.css">
+        <title>Accounts</title>
+
+</head>
+
+<body>
+
+    <div class="page-wrapper chiller-theme toggled">
+
+        <%- include ('partials/header.ejs') %>
+            <main class="page-content mt-5">
+                <div class="container-fluid">
+                    <h2>Create Account</h2>
+                    <hr>
+                    <div class="container py-3">
+                        <!-- error div -->
+                        <div id="alertDiv" style="display: none;">
+                            <div class="alert alert-info" role="alert">
+                                <span id="alertMsg"></span>
+                            </div>
+                        </div>
+                        <!-- error div end -->
+                        <form id="createAccForm">
+                            <div id="userInfo" class="p-4 border rounded border-dark">
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        <div class="row">
+                                            <label for="CNIC" class="col-sm-2 col-form-label"><b>CNIC</b></label>
+                                            <div class="col-sm-10">
+                                                <input type="text" name="CNIC" class="form-control" pattern="[0-9]{13}"
+                                                    id="CNIC" placeholder="CNIC" required>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="FirstName" class="col-sm-2 col-form-label"><b>First
+                                                    Name</b></label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" name="FirstName" id="FirstName"
+                                                    placeholder="First Name" required>
+                                            </div>
+                                            <label for="LastName" class="col-sm-2 col-form-label"><b>Last
+                                                    Name</b></label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" name="LastName" id="LastName"
+                                                    placeholder="Last Name" required>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <div class="input-group col-sm-12">
+                                                <input type="text" id="username" readonly
+                                                    class="form-control border rounded pl-3" name="Username"
+                                                    placeholder="Username" required>
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-dark" type="button" id="getUsernameBtn">Get
+                                                        Username</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="FatherCNIC" class="col-sm-2 col-form-label"><b>Father
+                                                    CNIC</b></label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="FatherCNIC"
+                                                    id="FatherCNIC" placeholder="Father CNIC" pattern="[0-9]{13}"
+                                                    required>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-4 row">
+                                            <label for="MotherCNIC" class="col-sm-2 col-form-label"><b>Mother
+                                                    CNIC</b></label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="MotherCNIC"
+                                                    id="MotherCNIC" placeholder="Mother CNIC" pattern="[0-9]{13}"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="DOB" class="col-sm-2 col-form-label"><b>Date of
+                                                    Birth</b></label>
+                                            <div class="col-sm-10">
+                                                <input type="date" class="form-control" name="DOB" id="DOB"
+                                                    placeholder="DOB" required>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="mt-4 row">
+                                            <label for="Address" class="col-sm-2 col-form-label"><b>Address</b></label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="Address" id="Address"
+                                                    placeholder="Address" required>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="MobileNum" class="col-sm-2 col-form-label"><b>Mobile
+                                                    Number</b></label>
+                                            <div class="col-sm-10">
+                                                <input type="tel" class="form-control" id="MobileNum" name="MobileNum"
+                                                    placeholder="Mobile Number" pattern="[0-9]+" required>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="Email" class="col-sm-2 col-form-label"><b>Email</b></label>
+                                            <div class="col-sm-10">
+                                                <input type="email" class="form-control" id="Email" name="Email"
+                                                    placeholder="Email" required>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="Post" class="col-sm-2 col-form-label"><b>Post</b></label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" name="Post" id="Post" required>
+                                                    <option value="" disabled selected hidden>Please Select Post...
+                                                    </option>
+                                                    <option value="Sub-Administrator">Sub-Administrator</option>
+                                                    <option value="Police Officer Jr.">Police Officer Jr.</option>
+                                                    <option value="Police Officer Sr.">Police Officer Sr.</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="my-4 row">
+                                            <div class="col-sm-12">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" name="userImage"
+                                                        id="userImage" required>
+                                                    <label id="userImagePath" class="custom-file-label"
+                                                        for="userImage">Choose User Image</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="row mx-auto">
+                                            <div class="card" style="width: 10rem;" id="img-card">
+                                                <img id="user-img-holder" class="card-img-top"
+                                                    src="images/unknownSampleImg.png" alt="user's image">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="mt-4 row">
+                                    <div class="col-sm-12">
+                                        <input type="submit" form="createAccForm" class="btn btn-dark col-sm-12"
+                                            value="Create User Account">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- </div> -->
+    </div>
+    </main>
+    <!-- page-content" -->
+    </div>
+    <!-- page-wrapper -->
+
+
+    <!-- Account creation modal -->
+    <div class="modal fade" id="successModal" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="successModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLongTitle">Account Credentials</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body pb-0">
+                    <div class="alert alert-success" role="alert">
+                        An account has been created with following credentials
+                    </div>
+                    <div class="alert alert-info" role="alert">
+
+                        <div class="row mt-2">
+                            <div class="col-sm-6 text-center pb-2">
+                                <b>Username </b>
+                            </div>
+                            <div id="credU" class="col-sm-6 text-center">
+                                username
+                            </div>
+                        </div>
+                        <div class="mt-3 mb-2 row">
+                            <div class="col-sm-6 text-center pb-2">
+                                <b>Password </b>
+                            </div>
+                            <div id="credP" class="col-sm-6 text-center">
+                                Password
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <div class="alert alert-warning">
+                        An email with same info has been sent to the user's email
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/foot.ejs') %>
+        <script>
+            $('#successModal').on('hidden.bs.modal', function (e) {
+                document.getElementById('createAccForm').reset();
+                document.getElementById('userImagePath').innerText = 'Choose User Image';
+                $('#user-img-holder').attr('src', 'images/unknownSampleImg.png');
+            })
+            $('#getUsernameBtn').on('click', function (e) {
+                e.preventDefault();
+                if ($('#FirstName').val() == "") {
+                    $('#alertMsg').text("Please enter first name!");
+                    $('#alertDiv').show().delay(3000).fadeOut();
+                    $('html, body').animate({ scrollTop: $("h2").offset().top }, 500);
+                    return;
+                }
+                $.ajax({
+                    type: 'get',
+                    url: '/get_username',
+                    dataType: 'json',
+                    xhrFields: {
+        withCredentials: true
+    },
+                    data: {
+                        "firstname": $('#FirstName').val()
+                    },
+                    success: function (record) {
+                        $('#username').val(record.usern);
+
+                    },
+                    error: function (err) {
+                        $('#alertMsg').text("Error! " + err.responseText);
+                        $('#alertDiv').show().delay(3000).fadeOut();
+                        $('html, body').animate({ scrollTop: $("h2").offset().top }, 500);
+                    }
+                });
+
+            });
+            $('#userImage').on('change', function (e) {
+                document.getElementById('userImagePath').innerText = e.target.files[0].name;
+                $('#user-img-holder').attr('src', URL.createObjectURL(e.target.files[0]))
+            });
+            $('#createAccForm').on('submit', function (e) {
+                e.preventDefault();
+                if ($('#username').val() == '') {
+                    $('#alertMsg').text("Fetch Username First!");
+                    $('#alertDiv').show().delay(3000).fadeOut();
+                    $('html, body').animate({ scrollTop: $("h2").offset().top }, 500);
+                    return;
+                }
+                var formData = new FormData(this);
+                $.ajax({
+                    type: 'post',
+                    url: '/add_user',
+                    dataType: 'json',
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    xhrFields: {
+        withCredentials: true
+    },
+                    success: function (record) {
+                        $('#credU').text(record.usern);
+                        $('#credP').text(record.pass);
+                        $('#successModal').modal('show');
+
+                    },
+                    error: function (err) {
+                        $('#alertMsg').text("Error! " + err.responseText);
+                        $('#alertDiv').show().delay(3000).fadeOut();
+                        $('html, body').animate({ scrollTop: $("h2").offset().top }, 500);
+                    }
+                });
+            });
+        </script>
+
+
+
+</body>
+
+</html>

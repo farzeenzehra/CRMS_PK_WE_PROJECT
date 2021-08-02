@@ -1,0 +1,90 @@
+body, html {
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  
+.bg {
+    background-image: url("../images/bg.jpg");
+    min-height: 100vh;  
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    }
+.bgColor
+{
+    position: relative;
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.63);
+    color:white;
+    background-attachment: fixed;
+}
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+  }
+.logForm
+{
+    background-color: rgba(0, 0, 0, 0.459);
+    box-shadow: 0 6px 12px 6px rgba(0, 0, 0, 0.493);
+}
+.logForm:hover
+{
+    box-shadow: 0 6px 24px 6px rgba(0, 0, 0, 0.493);
+}
+.vCenter 
+{
+    min-height:100vh;
+}
+
+#logo
+{
+    width:100%;
+}
+
+#login-foot
+{
+    margin-top: 10vh;
+}
+
+#main
+{
+       
+    margin-top: 10vh; 
+}
+/* a
+{
+color:white;
+text-decoration: none;
+} */
+
+
+/* 
+#loginField
+{
+    margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+    width:fit-content;
+    color:white;
+    height:fit-content;
+}
+
+#loginForm
+{
+    padding:10vh 10vw;
+}
+
+#submitBtn
+{
+    padding:5%;
+} */
+
+

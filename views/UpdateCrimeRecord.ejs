@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head.ejs') %>
+        <link rel="stylesheet" href="css/dashboard.css">
+        <title>Crime Record</title>
+
+</head>
+
+<body>
+
+    <div class="page-wrapper chiller-theme toggled">
+
+        <%- include ('partials/header.ejs') %>
+            <main class="page-content mt-5">
+                <div class="container-fluid">
+                    <h2>Add Crime Record</h2>
+                    <hr>
+                    <div class="container py-3">
+                        <!-- error div -->
+                        <div id="alertDiv" style="display: none;">
+                            <div class="alert alert-info" role="alert">
+                                <span id="alertMsg"></span>
+                            </div>
+                        </div>
+                        <!-- error div end -->
+                        <div class="my-3 row">
+                            <div class="col-md-3 mt-2">
+                                <!-- <form id="cnicForm"> -->
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="fetchBy" id="cnic" value="cnic"
+                                        checked>
+                                    <label class="form-check-label" for="cnic">CNIC</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" name="fetchBy" type="radio" id="crID" value="crID">
+                                    <label class="form-check-label" for="crID">Criminal ID</label>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="input-group">
+
+                                    <input type="text" class="form-control rounded" id="sQ"
+                                        placeholder="Enter CNIC or Criminal ID" required
+                                        pattern="[0-9]+">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-dark" type="button" id="fBtn"
+                                            name="fBtn">Fetch</button>
+                                    </div>
+                                </div>
+                                <!-- </form> -->
+                            </div>
+                        </div>
+                        <div id="crimeInfo" class="p-4 border rounded border-dark" style="display: none;">
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <form id="crimeInfoForm" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <label for="CriminalID" class="col-sm-2 col-form-label"><b>Criminal
+                                                    ID</b></label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                    id="CriminalID" placeholder="Criminal ID" readonly required>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="CNIC" class="col-sm-2 col-form-label"><b>CNIC</b></label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                    id="CNIC" placeholder="CNIC" readonly required>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="FullName" class="col-sm-2 col-form-label"><b>Full
+                                                    Name</b></label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                    id="FullName" placeholder="Person's Name" readonly required>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            
+                                            <label for="RecordID" class="col-sm-2 col-form-label"><b>Record ID</b></label>
+                                            <div class="col-sm-10">
+                                                <div class="input-group">
+                                                    <select class="form-control" id="RecordID" required>
+                                                        <option value="" disabled selected hidden>Please Select Record ID...</option>
+                                                        <!-- options will come here -->
+                                                    </select>
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-dark" type="button" id="fBtnCrime"
+                                                            name="fBtnCrime">Fetch</button>
+                                                    </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="Height" class="col-sm-2 col-form-label"><b>Status</b></label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" id="Status" required>
+                                                    <option value="" disabled selected hidden>Please Select Status...</option>
+                                                    <option value="Arrested">Arrested</option>
+                                                    <option value="Not Arrested">Not Arrested</option>
+                                                    <option value="Escaped">Escaped</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="AD" class="col-sm-2 col-form-label"><b>Arrest Date</b></label>
+                                            <div class="col-sm-10">
+                                                <input type="date" class="form-control" id="AD" required>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="RD"
+                                                class="col-sm-2 col-form-label"><b>Release Date</b></label>
+                                            <div class="col-sm-10">
+                                                <input type="date" class="form-control" id="RD">
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="CrimeType" class="col-sm-2 col-form-label"><b>Crime Type</b></label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" id="CrimeType" required>
+                                                    <option value="" disabled selected hidden>Please Select Crime...</option>
+                                                    <% crimes.forEach(crime=> { %>
+                                                        <% var crimeHeading=`Crime ID: ${crime.CrimeID}` %>
+                                                            <option value="<%=crime.CrimeID %>">
+                                                                <%=crimeHeading %> [<%= crime.Type %>]
+                                                            </option>
+                                                            <% }); %>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="CaseNo" class="col-sm-2 col-form-label"><b>CaseNo</b></label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="CaseNo"
+                                                    placeholder="Case No" pattern="[0-9]+">
+                                            </div>
+                                            <label for="FIRNo" class="col-sm-2 col-form-label"><b>FIR No</b></label>
+                                            <div class="col-sm-4">
+                                                <input type="text" class="form-control" id="FIRNo" pattern="[0-9]+"
+                                                    placeholder="FIR No" required>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="JailNo" class="col-sm-2 col-form-label"><b>Jail No</b></label>
+                                            <div class="col-sm-10">
+                                                <select class="form-control" id="JailNo">
+                                                    <option value="" disabled selected hidden>Please Select Jail...</option>
+                                                    <option value="">None</option>
+                                                    <% jails.forEach(jail=> { %>
+                                                        <% var jailHeading=`Jail No: ${jail.JailNo}` %>
+                                                            <option value="<%=jail.JailNo %>">
+                                                                <%=jailHeading %> [<%= jail.Name %>]
+                                                            </option>
+                                                            <% }); %>
+                                                </select>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="mt-4 row">
+                                            <label for="Description" class="col-sm-2 col-form-label"><b>Description of Act</b></label>
+                                            <div class="col-sm-10">
+                                                <textarea type="text" class="form-control" id="Description"
+                                                    placeholder="Description" required></textarea>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mt-4 row">
+                                            <label for="Punishment" class="col-sm-2 col-form-label"><b>Punishment</b></label>
+                                            <div class="col-sm-10">
+                                                <textarea type="text" class="form-control" id="Punishment"
+                                                    placeholder="Punishment" required></textarea>
+                                            </div>
+                                        </div>
+                                        
+
+                                    </form>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="row">
+
+                                        <div class="card m-2" style="width: 11rem;">
+                                            <div class="card-body">
+                                                <label for="front-img-holder"><b>Front Profile Image</b></label>
+                                                <img id="front-img-holder" class="card-img-top"
+                                                    src="images/unknownSampleImg.png" alt="person's image">
+                                            </div>
+                                        </div>
+
+                                        
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="mt-4 row">
+                                <div class="col-sm-12">
+                                    <input type="submit" form="crimeInfoForm" class="btn btn-dark col-sm-12"
+                                        value="Update Crime Record">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- </div> -->
+    </div>
+    </main>
+    <!-- page-content" -->
+    </div>
+    <!-- page-wrapper -->
+    <%- include('partials/foot.ejs') %>
+        <script>
+           
+            $('#fBtn').on('click', function () {
+                let sQ = $('#sQ').val();
+                let sB = $('input[name="fetchBy"]:checked').val();
+                if (sQ.length != 0) {
+                   
+                    $.ajax({
+                        type: 'get',
+                        url: '/get_criminal_info',
+                        dataType: 'json',
+                        xhrFields: {
+        withCredentials: true
+    },
+                        data: {
+                            "query" : sQ,
+                            "searchBy": sB
+                        },
+                        success: function (record) {
+                            document.getElementById('crimeInfoForm').reset();
+                            document.getElementById('RecordID').innerHTML = '<option value="" disabled selected hidden>Please Select Record ID...</option>';
+                            $('#FullName').val(record.FullName);
+                            $('#CNIC').val(record.CNIC);
+                            $('#CriminalID').val(record.CriminalID);
+                            $('#front-img-holder').attr('src',record.frontProfile);
+                            getCrimesOfCriminal(record.CriminalID);
+                            $('#crimeInfo').show();
+
+                        },
+                        error: function (err) {
+                            $('#alertMsg').text("Error! " + err.responseText);
+                            $('#alertDiv').show().delay(2000).fadeOut();
+                        }
+                    });
+                }
+                else {
+                    $('#alertMsg').text("Please Fill CNIC or Criminal ID First!");
+                    $('#alertDiv').show().delay(2000).fadeOut();
+                }
+            });
+            function getCrimesOfCriminal(criminalID)
+            {
+
+                $.ajax({
+                        type: 'get',
+                        url: '/get_crimes_of_criminal',
+                        dataType: 'json',
+                        xhrFields: {
+        withCredentials: true
+    },
+                        data: {
+                            "criminalID" : criminalID
+                        },
+                        success: function (recIds) {
+                            recIds.forEach(recId=>
+                            {
+                                document.getElementById('RecordID').innerHTML += 
+                                `
+                                <option value=${recId.RecordID}>${recId.RecordID}</option>
+                                `;
+                            })
+                            
+                            $('#crimeInfo').show();
+
+                        },
+                        error: function (err) {
+                            $('#alertMsg').text("Error! " + err.responseText);
+                            $('#alertDiv').show().delay(2000).fadeOut();
+                        }
+                    });
+                
+            }
+            $('#crimeInfoForm').on('submit', function (e) {
+                e.preventDefault();
+                if ($('#FullName').val().length != 0) {
+                    
+                    $.ajax({
+                        type: 'post',
+                        url: '/process_upd_crime_rec',
+                        dataType: 'text',
+                        xhrFields: {
+        withCredentials: true
+    },
+                        data: 
+                        {
+                            "RecordID":$('#RecordID').val(),
+                            "Status":$('#Status').val(),
+                            "crimeId":$('#CrimeType').val(),
+                            "AD":$('#AD').val(),
+                            "RD":$('#RD').val(),
+                            "JailNo":$('#JailNo').val(),
+                            "CaseNo":$('#CaseNo').val(),
+                            "FIRNo":$('#FIRNo').val(),
+                            "Description":$('#Description').val(),
+                            "Punishment":$('#Punishment').val()
+
+                        },
+                        success: function (result) {
+                            $('#alertMsg').text(result);
+                            $('#alertDiv').show().delay(3000).fadeOut();
+                            $('html, body').animate({ scrollTop: $("h2").offset().top }, 100);
+
+                        },
+                        error: function (err) {
+                            $('#alertMsg').text("Error! " + err.responseText);
+                            $('#alertDiv').show().delay(3000).fadeOut();
+                            $('html, body').animate({ scrollTop: $("h2").offset().top }, 100);
+                        }
+                    });
+                }
+                else {
+                    $('#alertMsg').text("Please Fetch Details First!");
+                    $('#alertDiv').show().delay(2000).fadeOut();
+                }
+            });
+            $('#fBtnCrime').on('click', function()
+            {
+                let recId = $('#RecordID').val();
+                if (recId.length != 0) {
+                   
+                    $.ajax({
+                        type: 'get',
+                        url: '/get_crime_rec_info',
+                        dataType: 'json',
+                        xhrFields: {
+        withCredentials: true
+    },
+                        data: {
+                            "recID":recId
+                        },
+                        success: function (record) {
+                            $('#Status').val(record.Status);
+                            $('#Punishment').val(record.Punishment);
+                            $('#AD').val(record.ArrestDate);
+                            $('#RD').val(record.ReleaseDate);
+                            $('#CrimeType').val(record.CrimeID);
+                            $('#Description').val(record.CrimeID);
+                            $('#FIRNo').val(record.FIRNo);
+                            $('#CaseNo').val(record.CaseNo);
+                            $('#JailNo').val(record.JailNo);
+                            $('#crimeInfo').show();
+
+                        },
+                        error: function (err) {
+                            $('#alertMsg').text("Error! " + err.responseText);
+                            $('#alertDiv').show().delay(2000).fadeOut();
+                        }
+                    });
+                }
+                else {
+                    $('#alertMsg').text("Please Select Record ID First!");
+                    $('#alertDiv').show().delay(2000).fadeOut();
+                }
+            })
+        </script>
+
+
+
+</body>
+
+</html>

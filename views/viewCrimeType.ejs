@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head.ejs') %>
+        <link rel="stylesheet" href="css/dashboard.css">
+        <title>Crime Type</title>
+
+</head>
+
+<body>
+
+    <div class="page-wrapper chiller-theme toggled">
+
+        <%- include ('partials/header.ejs') %>
+            <main class="page-content mt-5">
+                <div class="container-fluid">
+                    <h2>View Crime Type</h2>
+                    <hr>
+                    <div class="container py-3">
+                        <div id="alertDiv" style="display: none;">
+                            <div class="alert alert-info" role="alert">
+                                <span id="alertMsg"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <select class="form-control" id="CrimeSelectGrp" required>
+                                    <option value="" disabled selected hidden>Please Select Crime...</option>
+                                    <% crimes.forEach(crime=> { %>
+                                        <% var crimeHeading=`Crime ID: ${crime.CrimeID}` %>
+                                            <option value="<%=crime.CrimeID %>">
+                                                <%=crimeHeading %> [<%= crime.Type %>]
+                                            </option>
+                                            <% }); %>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="crimeInfo" style="display: none;">
+                            <div class="form-group row">
+                                <label for="crimeName" class="col-sm-2 col-form-label">Crime Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control-plaintext border pl-3 rounded" id="crimeName" placeholder="Crime Name"
+                                        readonly>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="associatedLaws" class="col-sm-2 col-form-label mt-3">Associated
+                                    Laws</label>
+                                <div class="col-sm-10 mt-3">
+                                    <div id="selectedLaws" class="list-group">
+                                        <!-- selected laws will come here -->
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- </div> -->
+                </div>
+            </main>
+            <!-- page-content" -->
+    </div>
+    <!-- page-wrapper -->
+    <%- include('partials/foot.ejs') %>
+        <script>
+
+            $('#CrimeSelectGrp').on('change', function () {
+                $('#crimeInfo').show();
+                $.ajax({
+                    type: 'get',
+                    url: '/get_crime_laws',
+                    dataType: 'json',
+                    xhrFields: {
+                            withCredentials: true
+                        },
+                    data:
+                    {
+                        "crimeID": $('#CrimeSelectGrp').val(),
+                    },
+                    success: function (result) {
+                        selectedLaws = [];
+                        document.getElementById('selectedLaws').innerHTML = "";
+                        document.getElementById('crimeName').value = result[0].Type;
+                        result.forEach(law => {
+                            document.getElementById('selectedLaws').innerHTML +=
+                                `<li id="al-${law.LawNo}" class="list-group-item list-group-item-action py-2 d-flex justify-content-between">
+                                        <details open>
+                                            <summary>Law No. ${law.LawNo}</summary>
+                                            <p>${law.Description}</p>
+                                        </details>
+                                    </li>`;
+
+                        });
+                    },
+                    error: function (error) {
+                        document.getElementById('alertMsg').innerHTML = error.responseText;
+                        $('#alertDiv').show().delay(3000).fadeOut();
+                    }
+                });
+            });
+        </script>
+
+
+
+</body>
+
+</html>

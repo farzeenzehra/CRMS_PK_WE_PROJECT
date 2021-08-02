@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head.ejs') %>
+        <link rel="stylesheet" href="css/dashboard.css">
+        <title>My Profile</title>
+
+</head>
+
+<body>
+
+    <div class="page-wrapper chiller-theme toggled">
+
+        <%- include ('partials/header.ejs') %>
+            <main class="page-content mt-5">
+                <div class="container-fluid">
+                    <h2>My Profile</h2>
+                    <hr>
+                    <div class="container py-3">
+                        <!-- error div -->
+                        <% if (messages.error) { %>
+                        <div id="alertDiv" style="display: none;">
+                            <div class="alert alert-info" role="alert">
+                                <span id="alertMsg"><%= messages.error %></span>
+                            </div>
+                        </div>
+                        <% } %>
+                        <!-- error div end -->
+                        <div id="userInfo" class="p-4 border rounded border-dark" >
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="row">
+                                        <div class="card" style="width: 10rem;" id="img-card">
+                                            <% var imgPath = 'images/'+user.Username+'.jpg' %>
+                                            <img id="img-holder" class="card-img-top" src="<%= imgPath %>"
+                                                alt="user's image">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="row">
+                                        <label for="CNIC" class="col-sm-2 col-form-label"><b>CNIC</b></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="CNIC" placeholder="CNIC" readonly value="<%= user.CNIC %>">
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 row">
+                                        <label for="FullName" class="col-sm-2 col-form-label"><b>Full Name</b></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="FullName" placeholder="Person's Name" readonly value="<%= user.FullName %>">
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 row">
+                                        <label for="FatherName" class="col-sm-2 col-form-label"><b>Father
+                                                Name</b></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="FatherName" placeholder="Father Name" readonly value="<%= user.FatherName %>">
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 row">
+                                        <label for="FatherCNIC" class="col-sm-2 col-form-label"><b>Father
+                                                CNIC</b></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="FatherCNIC" placeholder="Father CNIC" readonly value="<%= user.FatherCNIC %>">
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 row">
+                                        <label for="MotherName" class="col-sm-2 col-form-label"><b>Mother
+                                                Name</b></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="MotherName" placeholder="Mother Name" readonly value="<%= user.MotherName %>">
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 row">
+                                        <label for="MotherCNIC" class="col-sm-2 col-form-label"><b>Mother
+                                                CNIC</b></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="MotherCNIC" placeholder="Mother CNIC" readonly value="<%= user.MotherCNIC %>">
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 row">
+                                        <label for="DOB" class="col-sm-2 col-form-label"><b>Date of Birth</b></label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="DOB" placeholder="DOB" readonly value="<%= user.DOB %>">
+                                        </div>
+                                        <label for="Age" class="col-sm-2 col-form-label"><b>Age</b></label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="Age" placeholder="Age" readonly value="<%= user.Age %>">
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-4 row">
+                                        <label for="Address" class="col-sm-2 col-form-label"><b>Address</b></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="Address" placeholder="Address" readonly value="<%= user.Address %>">
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 row">
+                                        <label for="MobileNum" class="col-sm-2 col-form-label"><b>Mobile
+                                                Number</b></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="MobileNum" placeholder="Mobile Number" readonly value="<%= user.MobileNum %>">
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 row">
+                                        <label for="Email" class="col-sm-2 col-form-label"><b>Email</b></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="Email" placeholder="Email" readonly value="<%= user.Email %>">
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 row">
+                                        <label for="Post" class="col-sm-2 col-form-label"><b>Post</b></label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="Post" placeholder="Post" readonly value="<%= user.Post %>">
+                                        </div>
+                                        <label for="Status" class="col-sm-2 col-form-label"><b>Status</b></label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="Status" placeholder="Status" readonly value="<%= user.Status %>">
+                                        </div>
+                                    </div>
+                                    </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- </div> -->
+    </div>
+    </main>
+    <!-- page-content" -->
+    </div>
+    <!-- page-wrapper -->
+    <%- include('partials/foot.ejs') %>
+
+
+
+</body>
+
+</html>

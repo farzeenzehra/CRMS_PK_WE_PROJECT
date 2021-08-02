@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" href="images/logo.png">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <title>CRMS</title>
+</head>
+
+<body>
+
+    <video autoplay muted loop id="myVideo">
+        <source src="videos/abstract_line1.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+    <div class="bg">
+        <div class="bgColor">
+            <div class="container">
+
+                <div class="row justify-content-center vCenter">
+                    <div class=col></div>
+
+                    <div class="col-auto align-self-center" id="main">
+                        <div class="p-5 logForm">
+                        <img id=logo src="images/logoNname.png" alt="CRMS Logo" />
+                        <br><br>
+                        <% if (messages.error) {%>
+                            <div id="incorrectCred" class="alert alert-danger d-flex justify-content-between py-2"
+                                role="alert">
+                                <span>
+                                    <%= messages.error %>
+                                </span>
+                                <span class="fa fa-times" style="line-height: inherit;cursor: pointer;"
+                                    onclick="$('#incorrectCred').remove();"></span>
+                            </div>
+                            <% } %>
+                            <% if (messages.success) {%>
+                            <div id="verifiAcc" class="alert alert-success d-flex justify-content-between py-2"
+                                role="alert">
+                                <span>
+                                    <%= messages.success %>
+                                </span>
+                                <span class="fa fa-times" style="line-height: inherit;cursor: pointer;"
+                                    onclick="$('#verifiAcc').remove();"></span>
+                            </div>
+                            <% } %>
+                                <div id="userNF"></div>
+                                <form method="POST" id=loginForm action="/my_dashboard">
+
+                                    <label for="username" class="form-label">Username</label>
+                                    <br>
+                                    <input id="username" type=text name="username" class="form-control form-control-sm"
+                                        required />
+                                    <br>
+                                    <label for="password" class="form-label">Password</label>
+                                    <br>
+                                    <input id="password" type=password name="password"
+                                        class="form-control form-control-sm" required />
+                                    <br>
+
+                                    <div class="row justify-content-between">
+                                        <div id="forgotPassBtn" class="col-auto align-self-end">
+                                            <a href=# class="link-light forgotPassLink">Forgot Password?</a>
+                                        </div>
+                                        <div class="col-auto">
+                                            <button type="submit" id="LoginBtn"
+                                                class="btn btn-outline-light">Login</button>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                                </form>
+
+                                <!--content-->
+                    </div>
+                </div>
+                    <div class=col></div>
+
+                    <footer id="login-foot">
+                    </footer>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="forgotPassModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="forgotPassModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="forgotPassModalLabel">Forgot Password ?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="notifAlert" class="alert alert-success py-2" role="alert">
+                        A code has been sent to your email! Hurry Up! You have 10 minutes.
+                    </div>
+                    <form id="changePasswordForm" onsubmit = "event.preventDefault(); return false;">
+                        <label for="OTP" class="form-label">Code</label>
+                        <br>
+                        <input id="code" type="text" name="OTP" class="form-control form-control-sm" pattern="[0-9]{6}"
+                            required autocomplete="new-password" />
+                        <span id="codeValMsg"></span>
+                        <br>
+                        <label for="newPass" class="form-label">New Password</label>
+                        <br>
+                        <input id="newPass" type="password" name="newPass" class="form-control form-control-sm" required
+                            autocomplete="new-password" />
+                        <span id="npValMsg"></span>
+                        <br>
+                        <label for="CnewPass"" class=" form-label">Confirm New Password</label>
+                        <br>
+                        <input id="CnewPass" type=password name="CnewPass" class="form-control form-control-sm" required
+                            autocomplete="new-password" />
+                        <span id="cnpValMsg" class="pt-3"></span>
+                        <br>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button disabled form="changePasswordForm" id="changePassword" type="submit" class="btn btn-dark">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+
+    <script src="scripts/authorization_handler.js"></script>
+    <script src="scripts/forgotPass.js"></script>
+
+
+</body>
+
+</html>
+
+<!-- {
+    "code": $('#code').val(),
+    "newPass" :$('#newPass').val(),
+    "CnewPass": $('#CnewPass').val()
+}, -->
+<!-- 
+function () {
+    if ($('#username').val() != "") {
+        $.ajax({
+            url: '/forgotPassword',
+            type: 'POST',
+            dataType: 'json',
+            data: { "username": $('#username').val() },
+            success: function (data) {
+                if (data == true) {
+                    $('#forgotPassModal').modal('show');
+                }
+                else {
+                    alert("hello");
+                    document.getElementById('userNF').innerHTML=
+                        `<div class="alert alert-danger d-flex justify-content-around py-2"
+                        role="alert">
+                        <span id="msg">"Please Enter Username First"</span>
+                        <span class="fa fa-times" style="line-height: inherit;cursor: pointer;"
+                            onclick="$('#userNF').remove();"></span>
+                    </div>`
+                }
+            },
+            error: function (xhr, status, error) {
+                $('#notifAlert').text() = "Email could not be sent";
+                $('#forgotPassModal').modal('show');
+            },
+        });
+
+    }
+    else
+    {
+        $('#msg').text() = "Please Enter Username First";
+        $('#incorrectCred').show();
+    }
+}); -->

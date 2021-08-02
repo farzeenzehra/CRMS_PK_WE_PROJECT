@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('partials/head.ejs') %>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <title>Criminal Records</title>
+
+</head>
+
+<body>
+
+  <div class="page-wrapper chiller-theme toggled">
+
+    <%- include ('partials/header.ejs') %>
+      <main class="page-content mt-5">
+        <div class="container-fluid">
+          <h2>All Crime Records</h2>
+          <hr>
+          <div class="container py-3" style="overflow: scroll;">
+            <table class="table table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Record ID</th>
+                  <th scope="col">Criminal Name</th>
+                  <th scope="col">Crime</th>
+                  <th scope="col">Punishment</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">FIR No.</th>
+                  <th scope="col">View</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% results.forEach(result=> { %>
+                  <tr>
+                    <th scope="row">
+                      <%= result.RecordID %>
+                    </th>
+                    <td>
+                      <%= result.CriminalName %>
+                    </td>
+                    <td>
+                      <%= result.CrimeType %>
+                    </td>
+                    <td>
+                      <%= result.Punishment %>
+                    </td>
+                    <td>
+                        <%= result.Status %>
+                    </td>
+                    <td>
+                        <%= result.FIRNo %>
+                    </td>
+                    <td>
+                      <a href="#">
+                        <i class="fas fa-external-link-alt"></i>
+                      <a>
+                    </td>
+                  </tr>
+                  <% }); %>
+              </tbody>
+              <tfoot>
+                <td colspan="7">
+                  <a href="#" class="text-dark" id="fetchMoreRecsBtn">
+                    See More
+                    <i class="fas fa-angle-double-right"></i>
+                  </a>
+                </td>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </main>
+      <!-- page-content" -->
+  </div>
+  <!-- page-wrapper -->
+  <%- include('partials/foot.ejs') %>
+    <script>
+      $('#fetchMoreRecsBtn').on('click', function (e) {
+        e.preventDefault();
+        $.ajax({
+          type: 'get',
+          url: '/view_more_crime_recs',
+          dataType: 'json',
+          xhrFields: {
+                            withCredentials: true
+                        },
+          data: {
+            "last_id": document.querySelector(".table tbody tr:last-child th").innerText
+          },
+          success: function (records) {
+            if (records.length != 0) {
+
+              records.forEach(record => {
+                let tr = document.createElement('tr');
+                tr.innerHTML =
+                  `
+                    <th scope="row">${record.RecordID}</th>
+                    <td>${record.CriminalName}</td>
+                    <td>${record.CrimeType}</td>
+                    <td>${record.Punishment}</td>
+                    <td>${record.Status}</td>
+                    <td>${record.FIRNo}</td>
+                    <td><a href="#"><i class="fas fa-external-link-alt"></i><a></td>
+                  `
+                document.querySelector(".table tbody").append(tr)
+              });
+            }
+            else {
+              $('#fetchMoreRecsBtn').remove();
+            }
+          }
+        });
+      });
+    </script>
+
+
+</body>
+
+</html>

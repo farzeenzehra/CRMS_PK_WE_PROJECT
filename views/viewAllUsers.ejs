@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('partials/head.ejs') %>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <title>Users Information</title>
+<style>
+  .userCard:hover{
+    box-shadow: 2px 10px 16px 6px rgba(0, 0, 0, 0.301);
+  }
+</style>
+</head>
+
+<body>
+
+  <div class="page-wrapper chiller-theme toggled">
+
+    <%- include ('partials/header.ejs') %>
+      <main class="page-content mt-5">
+        <div class="container-fluid">
+          <h2>All Users</h2>
+          <hr>
+          <div class="container py-3" style="overflow: scroll;">
+            <div class="row d-flex justify-content-center users">
+            <% users.forEach(user=> { %>
+              <div class="col-auto mb-3 userWrapper">
+                <div class="card rounded userCard" style="width:250px;border: 2px solid #525965;">
+                  <div style="width:150;height:130px;background-color: #31353D;"></div>
+                  <div class="card-body pb-3 text-center">
+                    <% var imgPath = 'images/'+user.Username+'.jpg'%>
+                    <img src="<%=imgPath%>" style="width:140px;height:150px;margin-top:-115px" alt="User" class="img-fluid img-thumbnail rounded-circle border-0 mb-3">
+                    <h5 class="card-title"><%=user.FullName%></h5>
+                    <p class="text-secondary mb-1">
+                      <%=user.Post%>
+                      <br><span class="userName"><%=user.Username%></span>
+                      <br><%=user.CNIC%>
+                      <br><%=user.Age%>
+                      <br><%=user.Status%>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <% }) %>
+              
+            </div>
+            <p>
+              <a href="#" class="text-dark" id="fetchMoreRecsBtn">
+                See More
+                <i class="fas fa-angle-double-right"></i>
+              </a>
+            </p>
+            <!-- <table class="table table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Username</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">CNIC</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Post</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% users.forEach(user=> { %>
+                  <tr>
+                    <th scope="row">
+                      <%= user.Username %>
+                    </th>
+                    <td>
+                      <%= user.FullName %>
+                    </td>
+                    <td>
+                      <%= user.CNIC %>
+                    </td>
+                    <td>
+                      <%= user.Age %>
+                    </td>
+                    <td>
+                        <%= user.Post %>
+                    </td>
+                    <td>
+                        <%= user.Status %>
+                    </td>
+                  </tr>
+                  <% }); %>
+              </tbody>
+              <tfoot>
+                <td colspan="6">
+                  <a href="#" class="text-dark" id="fetchMoreRecsBtn">
+                    See More
+                    <i class="fas fa-angle-double-right"></i>
+                  </a>
+                </td>
+              </tfoot>
+            </table> -->
+          </div>
+        </div>
+      </main>
+      <!-- page-content" -->
+  </div>
+  <!-- page-wrapper -->
+  <%- include('partials/foot.ejs') %>
+    <script>
+      $('#fetchMoreRecsBtn').on('click', function (e) {
+        e.preventDefault();
+        $.ajax({
+          type: 'get',
+          url: '/view_more_users',
+          dataType: 'json',
+          xhrFields: {
+                            withCredentials: true
+                        },
+          data: {
+            // document.querySelector(".table tbody tr:last-child th").innerText
+            "last_id": $('.users .userWrapper:last-child .userCard .userName').text()
+          },
+          success: function (records) {
+            if (records.length != 0) {
+
+              records.forEach(record => {
+                let userWrapper = document.createElement('div');
+                userWrapper.setAttribute('class','col-auto mb-3 userWrapper');
+                userWrapper.innerHTML =
+                `
+                <div class="card rounded userCard" style="width:250px;border: 2px solid #525965;">
+                  <div style="width:150;height:130px;background-color: #31353D;"></div>
+                  <div class="card-body pb-3 text-center">
+                    <img src="images/${record.Username}.jpg" style="width:140px;height:150px;margin-top:-115px" alt="User" class="img-fluid img-thumbnail rounded-circle border-0 mb-3">
+                    <h5 class="card-title">${record.FullName}</h5>
+                    <p class="text-secondary mb-1">
+                      ${record.Post}
+                      <br><span class="userName">${record.Username}</span>
+                      <br>${record.CNIC}
+                      <br>${record.Age}
+                      <br>${record.Status}
+                    </p>
+                  </div>
+              </div>
+                `
+                  // `
+                  //   <th scope="row">${record.Username}</th>
+                  //   <td>${record.FullName}</td>
+                  //   <td>${record.CNIC}</td>
+                  //   <td>${record.Age}</td>
+                  //   <td>${record.Post}</td>
+                  //   <td>${record.Status}</td>
+                  // `
+                document.querySelector(".users").append(userWrapper)
+              });
+            }
+            else {
+              $('#fetchMoreRecsBtn').remove();
+            }
+          }
+        });
+      });
+    </script>
+
+
+</body>
+
+</html>

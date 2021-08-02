@@ -1,0 +1,211 @@
+<nav class="navbar navbar-dark fixed-top bg-dark ">
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+        <i class="fas fa-bars"></i>
+    </a>
+    <a class="navbar-brand px-4 py-0 my-0" href="#">
+        <img src='images/logoW.png' width="35vw">
+        <span id="siteName">Criminal Record Management System</span>
+    </a>
+</nav>
+
+  <nav id="sidebar" class="sidebar-wrapper mt-5">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a href="/my_profile">
+            <%= firstname+" "+lastname %>
+                </a>
+        <div id="close-sidebar">
+            <i class="fas fa-times"></i>
+        </div>
+      </div>
+        <div class="sidebar-header">
+            <div class="user-pic">
+                <% var imagePath='images/' +username+'.jpg'; %>
+                    <img class="img-responsive img-rounded" alt="User picture" src=<%=imagePath %>>
+            </div>
+            <div class="user-info">
+                <span class="user-name">
+                    <%= username %>
+                </span>
+                <span class="user-role">
+                    <%= post %>
+                </span>
+                <span class="user-status">
+                    <i class="fa fa-circle"></i>
+                    <span>Online</span>
+                </span>
+            </div>
+        </div>
+        <div class="sidebar-menu mb-5">
+            <ul>
+                <li class="header-menu">
+                    <span>General</span>
+                </li>
+                <li>
+                    <a href="/dashboard">
+                        <i class="fa fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+        
+                    </a>
+        
+                </li>
+                <li>
+                    <a id="detect_face" href="/detect_face">
+                        <i class="fa fa-camera"></i>
+                        <span>Detect Face</span>
+        
+                    </a>
+        
+                </li>
+                <li>
+                    <a href="/crime_report">
+                        <i class="fa fa-file"></i>
+                        <span>Crime Report</span>
+                    </a>
+                </li>
+                <li class="sidebar-dropdown">
+                    <a href="#">
+                        <i class="fa fa-id-card"></i>
+                        <span>Criminal Record</span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li>
+                                <a href="/view_all_criminal_rec">View All Criminal Records</a>
+                            </li>
+                            <li>
+                                <a href="/search_criminal_rec">Search Criminal Record</a>
+                            </li>
+                            <% if (post=='Police Officer Sr.') { %>
+                                <li>
+                                    <a href="/add_criminal_record">Add Criminal Record</a>
+                                </li>
+                                <li>
+                                    <a href="/update_criminal_record">Update Criminal Record</a>
+                                </li>
+                                <% } %>
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidebar-dropdown">
+                    <a href="#">
+                        <i class="fa fa-clipboard"></i>
+                        <span>Crime Record</span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li>
+                                <a href="/view_all_crime_rec">View All Crime Records</a>
+                            </li>
+                            <li>
+                                <a href="/search_crime_rec">Search Crime Record</a>
+                            </li>
+                            <% if (post=='Police Officer Sr.') { %>
+                                <li>
+                                    <a href="/add_crime_record">Add Crime Record</a>
+                                </li>
+                                <li>
+                                    <a href="/update_crime_record">Update Crime Record</a>
+                                </li>
+                                <% } %>
+                        </ul>
+                    </div>
+                </li>
+                <% if (post=='Administrator' ) { %>
+                    <li class="sidebar-dropdown">
+                        <a href="#">
+                            <i class="fa fa-user"></i>
+                            <span>Accounts</span>
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul>
+                                <li>
+                                    <a href="/create_account">Create Account</a>
+                                </li>
+                                <li>
+                                    <a href="/search_user">Search User Account</a>
+                                </li>
+                                <li>
+                                    <a href="/view_users">View User Accounts</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <% } %>
+                        <% if (post=='Sub-Administrator' ) { %>
+                            <li class="sidebar-dropdown">
+                                <a href="#">
+                                    <i class="fa fa-user"></i>
+                                    <span>Crime Type</span>
+                                </a>
+                                <div class="sidebar-submenu">
+                                    <ul>
+                                        <li>
+                                            <a href="/add_crime_type">Add Crime Type</a>
+                                        </li>
+                                        <li>
+                                            <a href="/view_crime_type">View Crime Types</a>
+                                        </li>
+                                        <li>
+                                            <a href="/update_crime_type">Update Crime Type</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <% } %>
+                                <% if (post=='Administrator' || post=='Sub-Administrator' ) { %>
+                                    <li>
+                                        <a href="/view_all_logs">
+                                            <i class="fas fa-history"></i>
+                                            <span>View Logs</span>
+                                            <!-- <span class="badge badge-pill badge-primary">Beta</span> -->
+                                        </a>
+                                    </li>
+                                    <% } %>
+                                        <li>
+                                            <a href="/view_person_details">
+                                                <i class="fa fa-users"></i>
+                                                <span>View Person Details</span>
+                                            </a>
+                                        </li>
+                                        <li class="header-menu">
+                                            <span>More</span>
+                                        </li>
+                                        <li>
+                                            <a href="/settings">
+                                                <i class="fa fa-cog"></i>
+                                                <span>Settings</span>
+                                                <!-- <span class="badge badge-pill badge-primary">Beta</span> -->
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/logout">
+                                                <i class="fa fa-sign-out-alt"></i>
+                                                <span>Log Out</span>
+                                            </a>
+                                        </li>
+        
+            </ul>
+        </div>
+      <!-- sidebar-menu  -->
+    </div>
+    <!-- sidebar-content  -->
+    <div class="sidebar-footer mb-5">
+        <a href="/my_profile">
+            <i class="fa fa-user"></i>
+            <!-- <span class="badge badge-pill badge-warning notification">3</span> -->
+        </a>
+        <a href="/view_all_logs">
+            <i class="fa fa-history"></i>
+            <!-- <span class="badge badge-pill badge-success notification">7</span> -->
+        </a>
+        <a href="/settings">
+            <i class="fa fa-cog"></i>
+            <!-- <span class="badge-sonar"></span> -->
+        </a>
+        <a href="/logout" id="LogoutBtn">
+            <i class="fa fa-sign-out-alt"></i>
+        </a>
+    </div>
+  </nav>
+  <!-- sidebar-wrapper  -->

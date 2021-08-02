@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head.ejs') %>
+        <link rel="stylesheet" href="css/dashboard.css">
+        <title>Settings</title>
+
+</head>
+
+<body>
+
+    <div class="page-wrapper chiller-theme toggled">
+
+        <%- include ('partials/header.ejs') %>
+            <main class="page-content mt-5">
+                <div class="container-fluid">
+                    <h2>Settings</h2>
+                    <hr>
+                    <div class="container py-3">
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <a class="nav-item nav-link active" id="nav-profile-tab" data-toggle="tab"
+                                    href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="true">My
+                                    Profile</a>
+                                <a class="nav-item nav-link" id="nav-password-tab" data-toggle="tab"
+                                    href="#nav-password" role="tab" aria-controls="nav-password"
+                                    aria-selected="false">Change Password</a>
+                                <a class="nav-item nav-link" id="nav-activity-tab" data-toggle="tab"
+                                    href="#nav-activity" role="tab" aria-controls="nav-activity"
+                                    aria-selected="false">My Activity</a>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-profile" role="tabpanel"
+                                aria-labelledby="nav-profile-tab">
+                                <div id="userInfo" class="p-4 m-auto">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="row">
+                                                <div class="card" style="width: 10rem;" id="img-card">
+                                                    <% var imgPath='images/' +user.Username+'.jpg' %>
+                                                        <img id="img-holder" class="card-img-top" src="<%= imgPath %>"
+                                                            alt="user's image">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <div class="row">
+                                                <label for="CNIC" class="col-sm-2 col-form-label"><b>CNIC</b></label>
+                                                <div class="col-sm-10">
+                                                    <input type="text"
+                                                        class="form-control-plaintext border pl-3 rounded" id="CNIC"
+                                                        placeholder="CNIC" readonly value="<%= user.CNIC %>">
+                                                </div>
+                                            </div>
+                                            <div class="mt-4 row">
+                                                <label for="FullName" class="col-sm-2 col-form-label"><b>Full
+                                                        Name</b></label>
+                                                <div class="col-sm-10">
+                                                    <input type="text"
+                                                        class="form-control-plaintext border pl-3 rounded" id="FullName"
+                                                        placeholder="Person's Name" readonly
+                                                        value="<%= user.FullName %>">
+                                                </div>
+                                            </div>
+                                            <div class="mt-4 row">
+                                                <label for="FatherName" class="col-sm-2 col-form-label"><b>Father
+                                                        Name</b></label>
+                                                <div class="col-sm-10">
+                                                    <input type="text"
+                                                        class="form-control-plaintext border pl-3 rounded"
+                                                        id="FatherName" placeholder="Father Name" readonly
+                                                        value="<%= user.FatherName %>">
+                                                </div>
+                                            </div>
+                                            <div class="mt-4 row">
+                                                <label for="FatherCNIC" class="col-sm-2 col-form-label"><b>Father
+                                                        CNIC</b></label>
+                                                <div class="col-sm-10">
+                                                    <input type="text"
+                                                        class="form-control-plaintext border pl-3 rounded"
+                                                        id="FatherCNIC" placeholder="Father CNIC" readonly
+                                                        value="<%= user.FatherCNIC %>">
+                                                </div>
+                                            </div>
+                                            <div class="mt-4 row">
+                                                <label for="MotherName" class="col-sm-2 col-form-label"><b>Mother
+                                                        Name</b></label>
+                                                <div class="col-sm-10">
+                                                    <input type="text"
+                                                        class="form-control-plaintext border pl-3 rounded"
+                                                        id="MotherName" placeholder="Mother Name" readonly
+                                                        value="<%= user.MotherName %>">
+                                                </div>
+                                            </div>
+                                            <div class="mt-4 row">
+                                                <label for="MotherCNIC" class="col-sm-2 col-form-label"><b>Mother
+                                                        CNIC</b></label>
+                                                <div class="col-sm-10">
+                                                    <input type="text"
+                                                        class="form-control-plaintext border pl-3 rounded"
+                                                        id="MotherCNIC" placeholder="Mother CNIC" readonly
+                                                        value="<%= user.MotherCNIC %>">
+                                                </div>
+                                            </div>
+                                            <div class="mt-4 row">
+                                                <label for="DOB" class="col-sm-2 col-form-label"><b>Date of
+                                                        Birth</b></label>
+                                                <div class="col-sm-4">
+                                                    <input type="text"
+                                                        class="form-control-plaintext border pl-3 rounded" id="DOB"
+                                                        placeholder="DOB" readonly value="<%= user.DOB %>">
+                                                </div>
+                                                <label for="Age" class="col-sm-2 col-form-label"><b>Age</b></label>
+                                                <div class="col-sm-4">
+                                                    <input type="text"
+                                                        class="form-control-plaintext border pl-3 rounded" id="Age"
+                                                        placeholder="Age" readonly value="<%= user.Age %>">
+                                                </div>
+                                            </div>
+
+                                            <div class="mt-4 row">
+                                                <label for="Address"
+                                                    class="col-sm-2 col-form-label"><b>Address</b></label>
+                                                <div class="col-sm-10">
+                                                    <input type="text"
+                                                        class="form-control-plaintext border pl-3 rounded" id="Address"
+                                                        placeholder="Address" readonly value="<%= user.Address %>">
+                                                </div>
+                                            </div>
+                                            <div class="mt-4 row">
+                                                <label for="MobileNum" class="col-sm-2 col-form-label"><b>Mobile
+                                                        Number</b></label>
+                                                <div class="col-sm-10">
+                                                    <input type="text"
+                                                        class="form-control-plaintext border pl-3 rounded"
+                                                        id="MobileNum" placeholder="Mobile Number" readonly
+                                                        value="<%= user.MobileNum %>">
+                                                </div>
+                                            </div>
+                                            <div class="mt-4 row">
+                                                <label for="Email" class="col-sm-2 col-form-label"><b>Email</b></label>
+                                                <div class="col-sm-10">
+                                                    <input type="text"
+                                                        class="form-control-plaintext border pl-3 rounded" id="Email"
+                                                        placeholder="Email" readonly value="<%= user.Email %>">
+                                                </div>
+                                            </div>
+                                            <div class="mt-4 row">
+                                                <label for="Post" class="col-sm-2 col-form-label"><b>Post</b></label>
+                                                <div class="col-sm-4">
+                                                    <input type="text"
+                                                        class="form-control-plaintext border pl-3 rounded" id="Post"
+                                                        placeholder="Post" readonly value="<%= user.Post %>">
+                                                </div>
+                                                <label for="Status"
+                                                    class="col-sm-2 col-form-label"><b>Status</b></label>
+                                                <div class="col-sm-4">
+                                                    <input type="text"
+                                                        class="form-control-plaintext border pl-3 rounded" id="Status"
+                                                        placeholder="Status" readonly value="<%= user.Status %>">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end my profile -->
+                            <div class="tab-pane fade" id="nav-password" role="tabpanel"
+                                aria-labelledby="nav-profile-tab">
+                                <div id="notifAlert" class="alert my-2 py-2" role="alert" style="display: none;">
+                                </div>
+                                <form id="changePasswordForm" class="p-4"
+                                    onsubmit="event.preventDefault(); return false;">
+                                    <label for="oldPass" class="form-label">Old Password</label>
+                                    <br>
+                                    <input id="oldPass" type="password" name="oldPass"
+                                        class="form-control form-control-sm" required autocomplete="new-password" />
+                                    <br>
+                                    <label for="newPass" class="form-label">New Password</label>
+                                    <br>
+                                    <input id="newPass" type="password" name="newPass"
+                                        class="form-control form-control-sm" required autocomplete="new-password" />
+                                    <span id="npValMsg"></span>
+                                    <br>
+                                    <label for="CnewPass"" class=" form-label">Confirm New Password</label>
+                                    <br>
+                                    <input id="CnewPass" type=password name="CnewPass"
+                                        class="form-control form-control-sm" required autocomplete="new-password" />
+                                    <span id="cnpValMsg" class="pt-3"></span>
+                                    <br><br>
+                                    <button disabled form="changePasswordForm" id="changePassword" type="submit"
+                                        class="btn btn-dark">Submit</button>
+                                </form>
+                            </div>
+                            <!-- end change password -->
+                            <!-- start my activity -->
+                            <div class="tab-pane fade" id="nav-activity" role="tabpanel"
+                                aria-labelledby="nav-contact-tab">
+                                <div class="container py-3" style="overflow: scroll;">
+                                    <div id="notifAlert2" class="alert my-2 py-2" role="alert" style="display: none;">
+                                    </div>
+                                    <table class="table table-hover">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th scope="col">Log ID</th>
+                                                <th scope="col">Log</th>
+                                                <th scope="col">Log Date & Time</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                        <tfoot>
+                                            <td colspan=" 2">
+                                                <a href="#" class="text-dark" id="fetchMoreLogsBtn">
+                                                    See More
+                                                    <i class="fas fa-angle-double-right"></i>
+                                                </a>
+                                            </td>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+    </div>
+    </div>
+
+    <!-- </div> -->
+    </div>
+    </main>
+    <!-- page-content" -->
+    </div>
+    <!-- page-wrapper -->
+    <%- include('partials/foot.ejs') %>
+        <script>
+            function validateForm() {
+                let newPass = $('#newPass').val();
+                let CnewPass = $('#CnewPass').val();
+                let oldPass = $('#oldPass').val();
+
+                if (/^((?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{5,})$/.test(newPass) == false) {
+                    $('#npValMsg').removeClass('text-success');
+                    $('#npValMsg').addClass('text-danger');
+                    document.getElementById('npValMsg').innerHTML = '<i class="fas fa-times-circle"></i> <span>Password must have one capital letter, one small letter, one special character [@,#,$,&,*,!], and one digit!!</span>'
+                }
+                else {
+                    $('#npValMsg').removeClass('text-danger');
+                    $('#npValMsg').addClass('text-success');
+                    document.getElementById('npValMsg').innerHTML = '<i class="fas fa-check-circle"></i> <span>You are good to go!!</span>'
+                }
+                if (newPass != CnewPass || !/^((?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{5,})$/.test(newPass)) {
+                    $('#cnpValMsg').addClass('text-success');
+                    $('#cnpValMsg').addClass('text-danger');
+                    document.getElementById('cnpValMsg').innerHTML = '<i class="far fa-times-circle"></i> <span>Passwords do not match!!</span>'
+                }
+                else {
+                    $('#cnpValMsg').removeClass('text-danger');
+                    $('#cnpValMsg').addClass('text-success');
+                    document.getElementById('cnpValMsg').innerHTML = '<i class="fas fa-check-circle"></i> <span>You are good to go!!</span>'
+                }
+                if (newPass == CnewPass && /^((?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{5,})$/.test(newPass)) {
+                    $('#changePassword').removeAttr('disabled');
+                }
+                else {
+                    $('#changePassword').attr('disabled', true);
+                }
+            }
+            $('#changePasswordForm').on('change keypress textInput input', validateForm);
+            $('#changePassword').on('click', function () {
+                $('#changePassword').attr('disabled', true);
+                $('#notifAlert').removeClass('alert-success');
+                $('#notifAlert').removeClass('alert-danger');
+                $('#notifAlert').addClass('alert-info');
+                $('#notifAlert').show().delay(3000).fadeOut();
+                document.getElementById('notifAlert').innerText = "Wait while we process your request....";
+                $.ajax({
+                    url: '/changePasswordWold',
+                    type: 'POST',
+                    dataType: 'text',
+                    xhrFields: {
+        withCredentials: true
+    },
+                    data: {
+                        "oldPass": $('#oldPass').val(),
+                        "newPass": $('#newPass').val(),
+                        "CnewPass": $('#CnewPass').val()
+                    },
+                    success: function (data) {
+                        $('#notifAlert').removeClass('alert-info');
+                        $('#notifAlert').removeClass('alert-danger');
+                        $('#notifAlert').addClass('alert-success');
+                        document.getElementById('notifAlert').innerText = data;
+                        $('#notifAlert').show().delay(3000).fadeOut();
+                    },
+                    error: function (error) {
+                        $('#notifAlert').removeClass('alert-info');
+                        $('#notifAlert').removeClass('alert-success');
+                        $('#notifAlert').addClass('alert-danger');
+                        document.getElementById('notifAlert').innerText = error.responseText;
+                        $('#notifAlert').show().delay(3000).fadeOut();
+                    }
+                });
+            });
+            $('#nav-activity-tab').on('click', function (e) {
+                $('#notifAlert2').removeClass('alert-danger');
+                $('#notifAlert2').addClass('alert-info');
+                document.getElementById('notifAlert2').innerText = "Fetching logs....";
+                $('#notifAlert2').show();
+                e.preventDefault();
+                $.ajax({
+                    type: 'get',
+                    url: '/view_my_logs',
+                    dataType: 'json',
+                    xhrFields: {
+        withCredentials: true
+    },
+                    data: {"last_id":"null"},
+                    success: function (logs) {
+                        $('#notifAlert2').hide();
+                        if (logs.length != 0) {
+                            logs.forEach(log => {
+                                let tr = document.createElement('tr');
+                                tr.innerHTML =
+                                    `<tr>
+                                        <th scope="row">
+                                            ${log.ID}
+                                        </th>
+                                        <td>
+                                            ${"You " + log.Description + log.LoggedID}</td>
+                                        <td>${log.InsertionDate + " " + log.InsertionTime}</td>
+                                    </tr>`
+                                document.querySelector(".table tbody").append(tr)
+                            });
+                        }
+                        else {
+                            document.querySelector(".table tbody").innerHTML ="No Actvity Detected!";
+                        }
+                    },
+                    error: function(err)
+                    {
+                        $('#notifAlert2').removeClass('alert-info');
+                        $('#notifAlert2').addClass('alert-danger');
+                        document.getElementById('notifAlert2').innerText = error.responseText;
+                        $('#notifAlert2').show().delay(3000).fadeOut();
+                    }
+                });
+            });
+            $('#fetchMoreLogsBtn').on('click', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'get',
+                    url: '/view_my_logs',
+                    dataType: 'json',
+                    xhrFields: {
+        withCredentials: true
+    },
+                    data: {
+                        "last_id": document.querySelector(".table tbody tr:last-child th").innerText
+                    },
+                    success: function (logs) {
+                        if (logs.length != 0) {
+                            logs.forEach(log => {
+                                let tr = document.createElement('tr');
+                                tr.innerHTML =
+                                    `<tr>
+                                    <th scope="row">
+                                        ${log.ID}
+                                    </th>
+                                    <td>
+                                        ${"You " + log.Description + log.LoggedID}</td>
+                                    <td>${log.InsertionDate + " " + log.InsertionTime}</td>
+                                    </tr>`
+                                document.querySelector(".table tbody").append(tr)
+                            });
+                        }
+                        else {
+                            $('#fetchMoreLogsBtn').remove();
+                        }
+                    },
+                    error: function(err)
+                    {
+                        $('#notifAlert2').removeClass('alert-info');
+                        $('#notifAlert2').addClass('alert-danger');
+                        document.getElementById('notifAlert2').innerText = err.responseText;
+                        $('#notifAlert2').show().delay(5000).fadeOut();
+                        $('html, body').animate({ scrollTop: $("h2").offset().top }, 1000);
+                    }
+                });
+            });
+        </script>
+
+
+</body>
+
+</html>

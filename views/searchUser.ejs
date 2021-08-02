@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head.ejs') %>
+        <link rel="stylesheet" href="css/dashboard.css">
+        <title>Accounts</title>
+
+</head>
+
+<body>
+
+    <div class="page-wrapper chiller-theme toggled">
+
+        <%- include ('partials/header.ejs') %>
+            <main class="page-content mt-5">
+                <div class="container-fluid">
+                    <h2>Search User Details</h2>
+                    <hr>
+                    <div class="container py-3">
+                        <!-- error div -->
+                        <div id="alertDiv" style="display: none;">
+                            <div class="alert alert-info" role="alert">
+                                <span id="alertMsg"></span>
+                            </div>
+                        </div>
+                        <!-- error div end -->
+                        <form id="searchUserForm">
+                            <div class="input-group">
+                                <input type="text" id="username" class="form-control" placeholder="Enter Username" required>
+                                <div class="input-group-append">
+                                    <button class="btn btn-dark" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="userInfo" class="mt-5 p-4 border rounded border-dark" style="display: none;">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="card" style="width: 10rem;" id="img-card">
+                                            <img id="img-holder" class="card-img-top rounded" src="images/unknownSampleImg.png"
+                                                alt="user's image">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="row">
+                                        <label for="CNIC" class="col-sm-2 col-form-label"><b>CNIC</b></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="CNIC" placeholder="CNIC" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 row">
+                                        <label for="FullName" class="col-sm-2 col-form-label"><b>Full Name</b></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="FullName" placeholder="Person's Name" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 row">
+                                        <label for="FatherName" class="col-sm-2 col-form-label"><b>Father
+                                                Name</b></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="FatherName" placeholder="Father Name" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 row">
+                                        <label for="FatherCNIC" class="col-sm-2 col-form-label"><b>Father
+                                                CNIC</b></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="FatherCNIC" placeholder="Father CNIC" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 row">
+                                        <label for="MotherName" class="col-sm-2 col-form-label"><b>Mother
+                                                Name</b></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="MotherName" placeholder="Mother Name" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 row">
+                                        <label for="MotherCNIC" class="col-sm-2 col-form-label"><b>Mother
+                                                CNIC</b></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="MotherCNIC" placeholder="Mother CNIC" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 row">
+                                        <label for="DOB" class="col-sm-2 col-form-label"><b>Date of Birth</b></label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="DOB" placeholder="DOB" readonly>
+                                        </div>
+                                        <label for="Age" class="col-sm-2 col-form-label"><b>Age</b></label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="Age" placeholder="Age" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-4 row">
+                                        <label for="Address" class="col-sm-2 col-form-label"><b>Address</b></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="Address" placeholder="Address" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 row">
+                                        <label for="MobileNum" class="col-sm-2 col-form-label"><b>Mobile
+                                                Number</b></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="MobileNum" placeholder="Mobile Number" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 row">
+                                        <label for="Email" class="col-sm-2 col-form-label"><b>Email</b></label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="Email" placeholder="Email" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 row">
+                                        <label for="Post" class="col-sm-2 col-form-label"><b>Post</b></label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="Post" placeholder="Post" readonly>
+                                        </div>
+                                        <label for="Status" class="col-sm-2 col-form-label"><b>Status</b></label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control-plaintext border pl-3 rounded"
+                                                id="Status" placeholder="Status" readonly>
+                                        </div>
+                                    </div>
+                                    </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- </div> -->
+    </div>
+    </main>
+    <!-- page-content" -->
+    </div>
+    <!-- page-wrapper -->
+    <%- include('partials/foot.ejs') %>
+        <script>
+            $('#searchUserForm').on('submit', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'get',
+                    url: '/process_search_user',
+                    dataType: 'json',
+                    xhrFields: {
+        withCredentials: true
+    },
+                    data: {
+                        "username": $('#username').val()
+                    },
+                    success: function (record) {
+                        $('#CNIC').val(record.CNIC);
+                        $('#FullName').val(record.FullName);
+                        $('#FatherName').val(record.FatherName);
+                        $('#FatherCNIC').val(record.FatherCNIC);
+                        $('#MotherName').val(record.MotherName);
+                        $('#MotherCNIC').val(record.MotherCNIC);
+                        $('#DOB').val(record.DOB);
+                        $('#Age').val(record.Age);
+                        $('#Address').val(record.Address);
+                        $('#MobileNum').val(record.MobileNum);
+                        $('#Email').val(record.Email);
+                        $('#Post').val(record.Post);
+                        $('#Status').val(record.Status);
+                        $('#img-holder').attr('src',`images/${record.CNIC}.jpg`)
+                        $('#userInfo').show();
+                    },
+                    error: function (err)
+                    {
+                        $('#userInfo').hide();
+                        $('#alertMsg').text("Error! "+ err.responseText);
+                        $('#alertDiv').show().delay(2000).fadeOut();
+                    }
+                });
+
+            });
+        </script>
+
+
+
+</body>
+
+</html>

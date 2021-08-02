@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('partials/head.ejs') %>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <title>Dashboard</title>
+    
+</head>
+
+<body>
+
+  <div class="page-wrapper chiller-theme">
+
+    <%- include ('partials/header.ejs') %>
+      <main class="page-content mt-5">
+        <div class="container-fluid" id="mainContent">
+          <h2>Dashboard</h2>
+          <hr>
+          <div class="container py-3">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="card my-3">
+                  <div class="card-body">
+                    <h5 class="card-title">Activity Logs</h5>
+                    <!-- <img src="images/criminalPie.png" class="card-img-top" alt="..." style="width:30vw;"> -->
+                    <div id="c1" style="height:300px"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card my-3">
+                  <div class="card-body">
+                    <h5 class="card-title">Last Month Crime Records </h5>
+                    <!-- <img src="images/logschart.jpg" class="card-img-top" alt="..." style="width:30vw;"> -->
+                    <div id="c2" style="height:300px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="card my-3">
+                  <div class="card-body">
+                    <h5 class="card-title">Changes in Criminal Records</h5>
+                    <p class="m-0 py-3" style="font-size:xx-large;"><span class="changesCrimiRec">0</span></p>
+                    <p class="card-text pt-3"><span class="changesCrimiRec">0</span> criminals were added to database this month.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card my-3">
+                  <div class="card-body">
+                    <h5 class="card-title">Changes in Crime Records</h5>
+                    <p class="m-0 py-3" style="font-size:xx-large;"><span class="changesCrimeRec">0</span></p>
+                    <p class="card-text pt-3"><span class="changesCrimeRec">0</span> crimes were registered to database this month.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <h4>Recent Logs</h4>
+            <hr>
+            <table class="table table-hover">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Log ID</th>
+                  <th scope="col">Log</th>
+                  <th scope="col">Log Date & Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% logs.forEach(log=> { %>
+                  <tr>
+                    <th scope="row">
+                      <%= log.ID %>
+                    </th>
+                    <td>
+                      <%= log.LoggerID+" "+log.Description+log.LoggedID %></td>
+                    <td><%= log.InsertionDate+" "+log.InsertionTime %></td>
+                  </tr>
+                <% }); %>
+              </tbody>
+              <tfoot>
+                <td colspan=" 2">
+                        <a href="/view_all_logs" class="text-dark">
+                          See More
+                          <i class="fas fa-angle-double-right"></i>
+                        </a>
+                    </td>
+                    </tfoot>
+            </table>
+          </div>
+
+          <!-- </div> -->
+        </div>
+      </main>
+      <!-- page-content" -->
+  </div>
+  <!-- page-wrapper -->
+  <%- include('partials/foot.ejs') %>
+  <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.stock.min.js"></script>
+    <script src="scripts/dashboard.js"></script>
+
+</body>
+
+</html>
