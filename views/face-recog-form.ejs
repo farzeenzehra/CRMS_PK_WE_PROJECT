@@ -3,7 +3,7 @@
 
 <head>
   <%- include('partials/head.ejs') %>
-    <link rel="stylesheet" href="css/dashboard.css">
+    
     <title>Detect Face</title>
 
 </head>
@@ -30,7 +30,7 @@
             <form method="POST" action="/process_face_detection" enctype="multipart/form-data" id="face-recog-form">
               <div class="input-group mb-3">
                 <div class="custom-file">
-                  <input type="file" class="custom-file-input" name="unknownImage" id="unknownImage">
+                  <input type="file" class="custom-file-input" name="unknownImage" id="unknownImage" required>
                   <label id="unknownImagePath" class="custom-file-label" for="unknownImage">Choose file</label>
                 </div>
                 <div class="input-group-append">

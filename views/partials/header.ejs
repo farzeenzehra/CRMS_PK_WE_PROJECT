@@ -1,8 +1,8 @@
-<nav class="navbar navbar-dark fixed-top bg-dark ">
-    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+<nav class="navbar navbar-dark fixed-top"style="background-color: #020739;">
+    <a id="show-sidebar" style="background-color: #020739;color:white" class="btn btn-sm" href="#">
         <i class="fas fa-bars"></i>
     </a>
-    <a class="navbar-brand px-4 py-0 my-0" href="#">
+    <a class="navbar-brand px-4 py-0 my-0" href="/">
         <img src='images/logoW.png' width="35vw">
         <span id="siteName">Criminal Record Management System</span>
     </a>
@@ -11,7 +11,7 @@
   <nav id="sidebar" class="sidebar-wrapper mt-5">
     <div class="sidebar-content">
       <div class="sidebar-brand">
-        <a href="/my_profile">
+        <a href="/my_profile" style="color: #ffffff;">
             <%= firstname+" "+lastname %>
                 </a>
         <div id="close-sidebar">
@@ -43,7 +43,7 @@
                 </li>
                 <li>
                     <a href="/dashboard">
-                        <i class="fa fa-tachometer-alt"></i>
+                        <i class="fa fa-tachometer-alt" style=" background-color: #020739;"></i>
                         <span>Dashboard</span>
         
                     </a>
@@ -51,7 +51,7 @@
                 </li>
                 <li>
                     <a id="detect_face" href="/detect_face">
-                        <i class="fa fa-camera"></i>
+                        <i class="fa fa-camera" style=" background-color: #020739;"></i>
                         <span>Detect Face</span>
         
                     </a>
@@ -59,16 +59,16 @@
                 </li>
                 <li>
                     <a href="/crime_report">
-                        <i class="fa fa-file"></i>
+                        <i class="fa fa-file" style=" background-color: #020739;"></i>
                         <span>Crime Report</span>
                     </a>
                 </li>
-                <li class="sidebar-dropdown">
+                <li class="sidebar-dropdown" >
                     <a href="#">
-                        <i class="fa fa-id-card"></i>
+                        <i class="fa fa-id-card" style=" background-color: #020739;"></i>
                         <span>Criminal Record</span>
                     </a>
-                    <div class="sidebar-submenu">
+                    <div class="sidebar-submenu" style="background-color: #020739;">
                         <ul>
                             <li>
                                 <a href="/view_all_criminal_rec">View All Criminal Records</a>
@@ -89,10 +89,10 @@
                 </li>
                 <li class="sidebar-dropdown">
                     <a href="#">
-                        <i class="fa fa-clipboard"></i>
+                        <i class="fa fa-clipboard" style=" background-color: #020739;"></i>
                         <span>Crime Record</span>
                     </a>
-                    <div class="sidebar-submenu">
+                    <div class="sidebar-submenu" style="background-color: #020739;">
                         <ul>
                             <li>
                                 <a href="/view_all_crime_rec">View All Crime Records</a>
@@ -114,10 +114,10 @@
                 <% if (post=='Administrator' ) { %>
                     <li class="sidebar-dropdown">
                         <a href="#">
-                            <i class="fa fa-user"></i>
+                            <i class="fa fa-user" style=" background-color: #020739;"></i>
                             <span>Accounts</span>
                         </a>
-                        <div class="sidebar-submenu">
+                        <div class="sidebar-submenu" style="background-color: #020739;">
                             <ul>
                                 <li>
                                     <a href="/create_account">Create Account</a>
@@ -135,10 +135,10 @@
                         <% if (post=='Sub-Administrator' ) { %>
                             <li class="sidebar-dropdown">
                                 <a href="#">
-                                    <i class="fa fa-user"></i>
+                                    <i class="fa fa-user" style=" background-color: #020739;"></i>
                                     <span>Crime Type</span>
                                 </a>
-                                <div class="sidebar-submenu">
+                                <div class="sidebar-submenu" style="background-color: #020739;">
                                     <ul>
                                         <li>
                                             <a href="/add_crime_type">Add Crime Type</a>
@@ -156,7 +156,7 @@
                                 <% if (post=='Administrator' || post=='Sub-Administrator' ) { %>
                                     <li>
                                         <a href="/view_all_logs">
-                                            <i class="fas fa-history"></i>
+                                            <i class="fas fa-history" style=" background-color: #020739;"></i>
                                             <span>View Logs</span>
                                             <!-- <span class="badge badge-pill badge-primary">Beta</span> -->
                                         </a>
@@ -164,7 +164,7 @@
                                     <% } %>
                                         <li>
                                             <a href="/view_person_details">
-                                                <i class="fa fa-users"></i>
+                                                <i class="fa fa-users" style=" background-color: #020739;"></i>
                                                 <span>View Person Details</span>
                                             </a>
                                         </li>
@@ -173,14 +173,14 @@
                                         </li>
                                         <li>
                                             <a href="/settings">
-                                                <i class="fa fa-cog"></i>
+                                                <i class="fa fa-cog" style=" background-color: #020739;"></i>
                                                 <span>Settings</span>
                                                 <!-- <span class="badge badge-pill badge-primary">Beta</span> -->
                                             </a>
                                         </li>
                                         <li>
                                             <a href="/logout">
-                                                <i class="fa fa-sign-out-alt"></i>
+                                                <i class="fa fa-sign-out-alt" style=" background-color: #020739;"></i>
                                                 <span>Log Out</span>
                                             </a>
                                         </li>
@@ -192,19 +192,19 @@
     <!-- sidebar-content  -->
     <div class="sidebar-footer mb-5">
         <a href="/my_profile">
-            <i class="fa fa-user"></i>
+            <i class="fa fa-user icon"></i>
             <!-- <span class="badge badge-pill badge-warning notification">3</span> -->
         </a>
         <a href="/view_all_logs">
-            <i class="fa fa-history"></i>
+            <i class="fa fa-history icon"></i>
             <!-- <span class="badge badge-pill badge-success notification">7</span> -->
         </a>
         <a href="/settings">
-            <i class="fa fa-cog"></i>
+            <i class="fa fa-cog icon"></i>
             <!-- <span class="badge-sonar"></span> -->
         </a>
         <a href="/logout" id="LogoutBtn">
-            <i class="fa fa-sign-out-alt"></i>
+            <i class="fa fa-sign-out-alt icon"></i>
         </a>
     </div>
   </nav>

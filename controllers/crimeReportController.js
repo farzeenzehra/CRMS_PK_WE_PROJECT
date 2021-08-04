@@ -1,4 +1,5 @@
 const con = require('../connection/connection')
+const logsController = require('./logsController')
 
 function getCrimeReport(req, res) {
     const username = req.session.username;
@@ -44,7 +45,7 @@ function genCrimeReport(req, res) {
             res.send({ "criminal": criminalInfo[0][0], "crime": crimeInfo, "fir":firInfo,
             'ps':psInfo,'case':caseInfo,'court':courtInfo,'jail':jailInfo,'po':policeInfo });
             })
-            logsController.log(req,session.username, "generated a crime report", '');
+            logsController.log(req.session.username, "generated a crime report", '');
         });
 
     }

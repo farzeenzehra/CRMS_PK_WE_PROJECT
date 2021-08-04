@@ -20,7 +20,7 @@ const crimeReportController = require('../controllers/crimeReportController')
 
 //login Page
 router.get('/', loginController.getLoginPage);
-router.post('/my_dashboard', loginController.authenticateLogin);
+router.post('/dashboard', loginController.authenticateLogin);
 
 //OTP
 router.post('/forgotPassword',loginController.forgotPassword,emailController.sendOTPEmail)
@@ -105,7 +105,7 @@ router.get('/process_search_user',auth,userDetailsController.processSearchUser)
 router.get('/view_users',auth,userDetailsController.getAllUsers)
 router.get('/view_more_users',auth,userDetailsController.getMoreUsers)
 router.post('/add_user',auth,accountsController.addUser);
-router.get('/verify',auth,accountsController.verifyAccount)
+router.get('/verify',accountsController.verifyAccount)
 
 //Settings
 router.get('/my_profile',auth,settingsController.viewProfile)

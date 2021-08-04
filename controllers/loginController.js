@@ -38,7 +38,7 @@ function authenticateLogin(req, res) {
             res.cookie('IsLoggedIn', 'true');
 
             //jwt genration
-            var token = jwt.sign({ "username": username }, config.secret, {
+            var token = jwt.sign({ "username": username ,"post":result[0][0].post}, config.secret, {
                 expiresIn: "24h" // expires in 24 hours
             });
             res.cookie('Token', token, {
@@ -76,7 +76,7 @@ function logout(req, res) {
             // signed:true
         });
         // con.end();
-        res.setHeader('Clear-Site-Data', '"cache", "cookies"');
+        // res.setHeader('Clear-Site-Data', '"cache", "cookies"');
         res.redirect('/');
     });
 

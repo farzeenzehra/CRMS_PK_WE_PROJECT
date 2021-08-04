@@ -3,7 +3,7 @@
 
 <head>
   <%- include('partials/head.ejs') %>
-    <link rel="stylesheet" href="css/dashboard.css">
+    
     <title>Dashboard</title>
     
 </head>
@@ -63,7 +63,7 @@
             <h4>Recent Logs</h4>
             <hr>
             <table class="table table-hover">
-              <thead class="thead-dark">
+              <thead class="bg-dark">
                 <tr>
                   <th scope="col">Log ID</th>
                   <th scope="col">Log</th>
@@ -82,6 +82,7 @@
                   </tr>
                 <% }); %>
               </tbody>
+              <% if (post=='Administrator' || post=='Sub-Administrator' ) { %>
               <tfoot>
                 <td colspan=" 2">
                         <a href="/view_all_logs" class="text-dark">
@@ -90,6 +91,7 @@
                         </a>
                     </td>
                     </tfoot>
+                    <% } %>
             </table>
           </div>
 

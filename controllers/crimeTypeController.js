@@ -1,4 +1,5 @@
 const con = require('../connection/connection')
+const logsController = require('./logsController')
 
 function getAddCrimeTypePage(req, res) {
     const username = req.session.username;
@@ -63,7 +64,7 @@ function updateCrimeType(req, res) {
             });
         });
         res.send('Crime Type Updated Successfully');
-        logsController.log(req,session.username, "updated a crime type with id: ", crimeId);
+        logsController.log(req.session.username, "updated a crime type with id: ", crimeId);
     });
 }
 function addCrimeType(req, res) {
@@ -82,7 +83,7 @@ function addCrimeType(req, res) {
             });
         });
         res.send('Crime Type Added Successfully');
-        logsController.log(req,session.username, "added a crime type with id: ",result[0][0].crimeID);
+        logsController.log(req.session.username, "added a crime type with id: ",result[0][0].crimeID);
     });
 }
 

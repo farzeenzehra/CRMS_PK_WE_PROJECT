@@ -3,7 +3,7 @@
 
 <head>
     <%- include('partials/head.ejs') %>
-        <link rel="stylesheet" href="css/dashboard.css">
+        
         <title>Accounts</title>
 
 </head>
@@ -179,7 +179,7 @@
                         $('#Email').val(record.Email);
                         $('#Post').val(record.Post);
                         $('#Status').val(record.Status);
-                        $('#img-holder').attr('src',`images/${record.CNIC}.jpg`)
+                        $('#img-holder').attr('src',`images/${$('#username').val()}.jpg`)
                         $('#userInfo').show();
                     },
                     error: function (err)

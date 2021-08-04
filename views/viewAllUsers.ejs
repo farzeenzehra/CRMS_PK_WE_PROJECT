@@ -3,11 +3,11 @@
 
 <head>
   <%- include('partials/head.ejs') %>
-    <link rel="stylesheet" href="css/dashboard.css">
+    
     <title>Users Information</title>
 <style>
   .userCard:hover{
-    box-shadow: 2px 10px 16px 6px rgba(0, 0, 0, 0.301);
+    box-shadow:  0px 0px 20px rgba(22, 199, 255, 0.5);
   }
 </style>
 </head>
@@ -25,8 +25,8 @@
             <div class="row d-flex justify-content-center users">
             <% users.forEach(user=> { %>
               <div class="col-auto mb-3 userWrapper">
-                <div class="card rounded userCard" style="width:250px;border: 2px solid #525965;">
-                  <div style="width:150;height:130px;background-color: #31353D;"></div>
+                <div class="card rounded userCard" style="width:250px;border: 2px solid #020739;">
+                  <div style="width:150;height:130px;background-color: #020739;"></div>
                   <div class="card-body pb-3 text-center">
                     <% var imgPath = 'images/'+user.Username+'.jpg'%>
                     <img src="<%=imgPath%>" style="width:140px;height:150px;margin-top:-115px" alt="User" class="img-fluid img-thumbnail rounded-circle border-0 mb-3">
@@ -51,7 +51,7 @@
               </a>
             </p>
             <!-- <table class="table table-hover">
-              <thead class="thead-dark">
+              <thead class="bg-dark">
                 <tr>
                   <th scope="col">Username</th>
                   <th scope="col">Name</th>

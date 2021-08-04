@@ -3,8 +3,8 @@
 
 <head>
   <%- include('partials/head.ejs') %>
-    <link rel="stylesheet" href="css/dashboard.css">
-    <title>Criminal Records</title>
+    
+    <title>Crime Records</title>
 
 </head>
 
@@ -19,7 +19,7 @@
           <hr>
           <div class="container py-3" style="overflow: scroll;">
             <table class="table table-hover">
-              <thead class="thead-dark">
+              <thead class="bg-dark">
                 <tr>
                   <th scope="col">Record ID</th>
                   <th scope="col">Criminal Name</th>
@@ -27,7 +27,6 @@
                   <th scope="col">Punishment</th>
                   <th scope="col">Status</th>
                   <th scope="col">FIR No.</th>
-                  <th scope="col">View</th>
                 </tr>
               </thead>
               <tbody>
@@ -51,11 +50,7 @@
                     <td>
                         <%= result.FIRNo %>
                     </td>
-                    <td>
-                      <a href="#">
-                        <i class="fas fa-external-link-alt"></i>
-                      <a>
-                    </td>
+                    
                   </tr>
                   <% }); %>
               </tbody>
@@ -101,7 +96,6 @@
                     <td>${record.Punishment}</td>
                     <td>${record.Status}</td>
                     <td>${record.FIRNo}</td>
-                    <td><a href="#"><i class="fas fa-external-link-alt"></i><a></td>
                   `
                 document.querySelector(".table tbody").append(tr)
               });

@@ -5,7 +5,7 @@ function getDashboard(req, res) {
     const firstname = req.session.firstname;
     const lastname = req.session.lastname;
     const post = req.session.post;
-    
+
     let sql = "CALL GetRecentLogs()";
     con.query(sql, function (err, result) {
         if (err) throw err;

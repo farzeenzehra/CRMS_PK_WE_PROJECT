@@ -123,7 +123,7 @@ function sendOTPEmail(req, res) {
   </style>
 
 </head>
-<body style="background-color: #000000;">
+<body style="background-color: #020739;">
 
   <!-- start preheader -->
   <div class="preheader" style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
@@ -136,7 +136,7 @@ function sendOTPEmail(req, res) {
 
     <!-- start logo -->
     <tr>
-      <td align="center" bgcolor="#00000">
+      <td align="center" bgcolor="#020739">
 
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
           <tr>
@@ -153,7 +153,7 @@ function sendOTPEmail(req, res) {
 
     <!-- start hero -->
     <tr>
-      <td align="center" bgcolor="#000000">
+      <td align="center" bgcolor="#020739">
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
@@ -167,7 +167,7 @@ function sendOTPEmail(req, res) {
 
     <!-- start copy block -->
     <tr>
-      <td align="center" bgcolor="#000000">
+      <td align="center" bgcolor="#020739">
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
 
           <!-- start copy -->
@@ -186,7 +186,7 @@ function sendOTPEmail(req, res) {
                   <td align="center" bgcolor="#ffffff" style="padding: 12px;">
                     <table border="0" cellpadding="0" cellspacing="0">
                       <tr>
-                        <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
+                        <td align="center" bgcolor="#020739" style="border-radius: 6px;">
                           <a target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">${OTP}</a>
                         </td>
                       </tr>
@@ -213,12 +213,12 @@ function sendOTPEmail(req, res) {
 
     <!-- start footer -->
     <tr>
-      <td align="center" bgcolor="#000000" style="padding: 24px;">
+      <td align="center" bgcolor="#020739" style="padding: 24px;">
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
 
           <!-- start permission -->
           <tr>
-            <td align="center" bgcolor="#000000" style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
+            <td align="center" bgcolor="#020739" style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
               <p style="margin: 0;">You received this email because we received a request for OTP for your account. If you didn't request OTP you can safely delete this email.</p>
             </td>
           </tr>
@@ -363,7 +363,7 @@ function sendVerificationEmail(usern, pass, vCode, fullname, email) {
   </style>
 
 </head>
-<body style="background-color: #000000;">
+<body style="background-color: #020739;">
 
   <!-- start preheader -->
   <div class="preheader" style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
@@ -376,7 +376,7 @@ function sendVerificationEmail(usern, pass, vCode, fullname, email) {
 
     <!-- start logo -->
     <tr>
-      <td align="center" bgcolor="#00000">
+      <td align="center" bgcolor="#020739">
 
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
           <tr>
@@ -393,7 +393,7 @@ function sendVerificationEmail(usern, pass, vCode, fullname, email) {
 
     <!-- start hero -->
     <tr>
-      <td align="center" bgcolor="#000000">
+      <td align="center" bgcolor="#020739">
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
           <tr>
             <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
@@ -407,7 +407,7 @@ function sendVerificationEmail(usern, pass, vCode, fullname, email) {
 
     <!-- start copy block -->
     <tr>
-      <td align="center" bgcolor="#000000">
+      <td align="center" bgcolor="#020739">
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
 
         <!-- start copy -->
@@ -430,7 +430,7 @@ function sendVerificationEmail(usern, pass, vCode, fullname, email) {
                   <td align="center" bgcolor="#ffffff" style="padding: 12px;">
                     <table border="0" cellpadding="0" cellspacing="0">
                       <tr>
-                        <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
+                        <td align="center" bgcolor="#020739" style="border-radius: 6px;">
                           <a href="https://crmspk.azurewebsites.net/verify?vCode=${vCode}" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Verify Account</a>
                         </td>
                       </tr>
@@ -466,12 +466,12 @@ function sendVerificationEmail(usern, pass, vCode, fullname, email) {
 
     <!-- start footer -->
     <tr>
-      <td align="center" bgcolor="#000000" style="padding: 24px;">
+      <td align="center" bgcolor="#020739" style="padding: 24px;">
         <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
 
           <!-- start permission -->
           <tr>
-            <td align="center" bgcolor="#000000" style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
+            <td align="center" bgcolor="#020739" style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
               <p style="margin: 0;">You received this email because an account has been created with your email.</p>
             </td>
           </tr>

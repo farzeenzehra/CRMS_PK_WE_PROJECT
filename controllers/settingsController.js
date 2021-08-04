@@ -1,5 +1,6 @@
 const con = require('../connection/connection')
 const crypto = require('crypto')
+const logsController = require('./logsController')
 
 function viewProfile(req, res) {
     const username = req.session.username;
@@ -64,7 +65,7 @@ function changePasswordWold(req, res) {
                     return;
                 }
                 res.send(rslt);
-                logsController.log(req,session.username, "changed password", '');
+                logsController.log(req.session.username, "changed password", '');
                 return;
             });
         });
